@@ -1,0 +1,32 @@
+body,ul,li{   /* 初始化*/
+    padding: 0; 
+    margin: 0;
+    list-style: none;
+}
+/* ul是由子元素撑开的，并没设定大小。又因子元素都是浮动的，所以需要清理浮动才能把父元素Ul撑开*/
+/* 清楚浮动的操作对象是父级，作用对象也是父级*/
+.clearfix::after{
+    content:'';
+    display: block;  /* 也可用table，都是块元素*/
+    clear: both;
+}
+.wrapper{    /*块元素水平居中：把ul变成行级块元素，ul父级text-align: center;实现居中*/
+    text-align: center;
+    min-width: 1200px;;
+}
+.list{
+    display: inline-block;
+}
+.list li{
+    float: left;
+}
+.item{
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5px;
+}
+.item img{
+    display: block;  /*！！！取消img留下的6px*/
+    width: 200px;    /* 给图片设定固定宽度*/
+}
