@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax封装</title>
+    <style>
+        .button{
+            width: 50px;
+            height: 50px;
+            margin-top: 50px;
+        }
+        .kuang{
+            display: none;
+            width: 300px;
+            height: 300px;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        姓名：<input type="text">
+        年龄：<input type="text">
+        <input type="submit" class="btn">
+    </div>
+    <button class="button"></button>
+    <ul class="box"></ul>
+
+    <button class="3dxiuxiu">三维展示</button>
+    <div class="kuang"></div>
+
+    <script>
+        document.getElementsByClassName("btn")[0].onclick = function () {    // Ajax POST请求：将前端的数据传入后台
+         
+            var input1 = document.getElementsByTagName("input")[0];
+            var input2 = document.getElementsByTagName("input")[1];
+            var value1 = input1.value;
+            var value2 = input2.value;
+
+            var str = "username=" + value1 + "&age=" + value2;   // ！！！！必须按post.php的规定格式向后台传数据
+            console.log("上传的字符串:" + str);
+            ajax("post","./post.php",postCbs,str,true);
+        }
+        document.getElementsByTagName("button")[0].onclick = function(){   // Ajax GET请求：将后台的数据获取到前端
+            ajax("get","./getNews.php",getCbs,"123",true);        //  123为此get请求传入的数据
+        }
+        function getCbs(val){
+            var OUL = document.getElementsByClassName("box")[0];
+            console.log(typeof val);
+            var data1 = JSON.parse(val);
+            var str = '';
+            data1.forEach(function (ele,index) {
+                console.log(ele);
+                str += '<li>' + ele.title + ele.data+'</li>';
+            });
+            console.log(str);
+            OUL.innerHTML = str;
+        }
+        function postCbs(data){
+            console.log('POST请求返回的数据：' + data);
+        }
+
+
+
+        var kuang = document.getElementsByClassName('kuang')[0];
+        var flag = false;
+        document.getElementsByClassName("3dxiuxiu")[0].onclick = function () {  // 3D秀秀展示
+            // console.log(iframe3d);
+            if(flag == false){
+                display();
+                console.log('生成3d模型');
+            }else{
+                kuang.innerHTML = '';  // 清空div外框内的内容，即删掉iframe标签
+                // kuang.remove(iframe3d);
+                console.log('清除3d模型');
+                flag = false;
+            }
+        }
+        function display(){     // 3D秀秀展示函数
+            kuang.style.display = 'block';
+            iframe3d = document.createElement('iframe');
+            iframe3d.src = 'http://www.3dxiuxiu.cn/web/view_admin.html?modelId=22200';
+            iframe3d.scrolling = 'no';
+            // iframe3d.setAttribute('allowFullScreen');
+            iframe3d.style.width = '300px';
+            iframe3d.style.height = '300px';
+            kuang.appendChild(iframe3d);
+            flag = true;
+        }
+
+    </script>
+    <script src="./ajax.js"></script>
+</body>
+
+</html>
