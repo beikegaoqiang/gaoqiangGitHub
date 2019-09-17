@@ -1,0 +1,139 @@
+body,
+ul,
+li,
+a,
+p {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-size: 0;
+    text-decoration: none;
+    /* 消除a标签的下划线*/
+}
+a,
+p {
+    color: #fff;
+}
+
+/* 一、页头导航栏nav*/
+.header {
+    height: 44px;
+    background: rgba(34, 32, 28, 0.8);
+}
+.header-container{   /* ！！！设计目标：不出现横向滚动条且当窗口宽度大于一定值时，各li间距不变，父级ul(.header-list)和div一直居中，说明父级并没有被压缩或拉伸.其小于一定值时，ul才缩*/
+    max-width: 980px;  /* 小于980时，自动充满父元素header。当写width: 980px时，窗口低于980px时会出现横向滚动条*/
+    margin: 0 auto;    /* ！！！margin对有确定宽度的元素才有效。即此处当大于980px时才有效(低于980px时就不需要居中效果了,由ul的内容撑开整个父级header,flex的两端对齐继续发挥作用进行li在ul内的样式调整变化，不再需要marigin:auto水平居中)*/
+}
+.header-list,.header-logo{
+    display: flex;
+    justify-content: space-between; /* ！！！两端对齐，此处在没有设子元素a标签的宽度情况下，能通过此句实现其对齐效果。a标签的实际宽度由内容撑开*/
+    margin: 0 30px;     /* ！！！缩宽屏幕时，左侧距离窗口边界太近，所以设margin值*/
+}
+.header-list li a,.header-logo li a{
+    display: inline-block;
+    height: 44px;
+    line-height: 44px;
+    font-size: 20px;
+    font-weight: 200;  
+}
+.header-list-logo a{   /* 给带图片背景的a标签设置样式*/ 
+    background-image:url("a.png");
+    width: 40px;   /* ！！！！给a标签一个宽度（之前因为justify-content: space-between的对齐效果，省略没设，a的实际大小由内容撑开）*/
+                 /* 但此处给a标签添加的是背景图片，所以没有其他li下的a标签那样的由其所包含的文字内容撑开的效果，需设定一个宽度，要不还是为0。*/
+    background-size: 30px;         /* 宽为30，高按原图片比例（原应有俩参数）*/ 
+    background-repeat: no-repeat;  /* 不重复，只显示一张*/
+    background-position: center;   /* 水平、垂直方向都居中（原应有俩参数）*/
+}
+.header-logo li:nth-child(2) a{  /* ！！！不能对li（header-list-deng）进行字体大小设置，要对文本的直接父级a进行字体大小设置*/
+        font-size: 30px;
+}
+.header-logo {
+    display: none;
+}
+
+/* 页头导航 媒体查询*/
+@media only screen and (max-width:600px) {
+    .header-list{
+        display: none;   /* 鼠标点击的时候才出现*/
+        position: absolute;  /* ！！！脱离了文档流，所以不会因为此list的出现而将mian进行下挤*/ 
+        top: 44px;
+        flex-direction: column;
+        width: 100%;  /*！！！ 设定定位后，因脱离父元素header-container，所以不再有撑开父元素效果。需重设宽度*/
+        margin: 0;    /* 消除之前所设的margin，使其li所在的ul充满窗宽*/
+        background:violet;
+    }
+    .header-list li {
+        width: 80%;
+        border-top: 1px solid #fff;
+        margin: 0 auto;
+    }
+    .header-list li:nth-child(1),.header-list li:nth-child(3){
+        border-top: none;
+    }
+    .header-list .header-list-logo{
+        display: none;
+    } 
+    .header-logo {
+        display: flex;  /* ！！！ 注意ul（header-logo）原样式是flex，不是block*/
+    }
+    .header-list-active {   /* ！！！用于点击事件header-list的显示与隐藏*/
+        display: flex;   /* 可对header-list中的display:none进行覆盖，同级别的选择器看先后顺序 */
+    }
+}
+
+
+/* 二、页面主要内容main*/
+.class {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* ！！要清理浮动，否则不能被浮动子元素撑开，进而不能对子元素进行居中等操作*/
+.main-container::before,.main-container::after  
+{ 
+    content: "";                     /*加内容使margin不重叠*/
+    display: table;                  /*伪元素清理浮动 1 */
+}
+.main-container::after{
+    clear: both;                     /*伪元素清理浮动 2 */
+}
+.main-container{
+    padding-top: 50px;
+    margin: 0 auto;
+    max-width: 980px;
+}
+p{
+    width: 40%;
+    border-top: 2px double palevioletred;
+    height: 250px;
+    font-size: 30px;
+    padding: 50px 30px 0 30px;
+    /* line-height: 600px; */
+    text-align: center;
+}
+p:nth-child(2n+1){
+    float: left;
+}
+p:nth-child(2n){
+    float: right;
+}
+
+/*  页面主要内容 媒体查询*/
+@media only screen and (max-width:630px){
+    .main-container{
+        width: 80%;
+        margin: 0 auto;
+        max-width: 980px;
+    }
+    p:nth-child(2n),p:nth-child(2n+1){  /* */
+        float: none;
+        width: 100%; 
+        border-top:none;
+        border-bottom: 1px solid rgb(241, 113, 9);
+        height: 100px;
+        font-size: 20px;
+        padding: 20px 20px 0 20px;
+        text-align: center;
+    }
+
+}
+

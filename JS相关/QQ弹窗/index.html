@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>QQ弹窗</title>
+
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            height: 718px; 
+        }
+        .window{
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            margin-right: 15px;
+            
+            width: 400px;
+            height: 0;
+            border: 2px solid black;
+        }
+        .picture{
+            width: 400px;   /*此处仅需要设置图片的高度即可*/ 
+        }
+        .front{
+            position: absolute;  /*注意此处定位是absolute */
+            top: 0;
+            right: 0;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body>
+    <iframe src="http://www.qq.com" frameborder="0"  width="100%" height="100%"></iframe>
+     
+    <div class="window" id="win">
+        <a href=""><img src="0.jpg" alt="" class="picture"></a>
+        <img src="close.jpg" alt="" class="front" id= "close">
+    </div>
+     
+    <script>
+        var win = document.getElementById("win");//！！注意不能写成var window = ... 变量名与系统名互斥
+        var close = document.getElementById("close");
+        var gao = 0;     // 定义一个变量用来存储窗口高度
+
+        close.onclick = function(){
+            var time2 = setInterval(lowtime2,20);
+            function lowtime2(){
+                if( gao <= 0){
+                    win.style.display = "none";
+                    clearInterval(time2);
+                }else{
+                    gao -= 2;
+                    win.style.height = gao +"px";    
+                }
+            }
+        }
+        // var time1 = setInterval(lowtime,5);  // 疑问1：？？？ 为什么把计时器存储在变量内也会触发它(此处赋给一个变量是为了清除定时器语句中使用)
+        function lowtime1(){
+            if( gao >= 225 ){
+                win.style.height = "225px";
+                clearInterval(time1);
+            }else{
+            gao += 1;
+            win.style.height = gao +"px";    //通过JS直接更改CSS样式，注意赋值类型是字符串 
+            }
+        }
+
+        window.onload = function(){   /*！！！代表整个页面加载完以后才运行 (为了使弹窗在页面加载完后出现)*/
+            time1 = setInterval(lowtime1,5);   /* 把计时器的启动语句放在window.load内*/
+        }                             /*  疑问2？？？ 当加上var时，上升效果虽然不变，但通过添加的下降效果可以发现上升的定时器并未被关闭*/
+    
+    </script>
+
+
+
+
+</body>
+</html>

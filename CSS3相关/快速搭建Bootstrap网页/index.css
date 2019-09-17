@@ -1,0 +1,242 @@
+body,ul,li,p{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* 巨幕*/
+.masthead{
+    text-align: center;
+    background: linear-gradient(45deg, rgb(2, 0, 49) 0px, rgb(109, 51, 83) 100%);
+    padding: 60px 0 80px;
+    margin-bottom: 0;
+    position: relative; 
+/* ！！！作为after伪元素的定位包含框。
+ 由于after的四个值全为0所以大小覆盖整个定位包含框，如果不设定此句，则after的定位包含框就是body，after的大小就会覆盖整个body,即就会对整个body文档流内的超链接进行覆盖*/
+}
+/* ！！！既想设背景图，又想设背景色的方法：给元素自身设置背景色，添加充满元素大小且脱离文档流的伪元素并设置背景图，并提升与伪元素同级别dom元素的z-index层级，使其在伪元素之上*/
+.masthead::after{
+    content: "";
+    position: absolute;  /* ！！！添加给afer的背景图片脱离了文档流，所以会覆盖原文档流的超链接*/
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: url("1.png");
+    background-position: center;  /* ！！使在屏幕宽度变化时，背景图也跟着变化*/
+}
+.masthead .container{    /* ！！！提升与after同级别dom元素的层级*/
+    position: relative;  /* ！！！z-index所在的元素要定位才有效*/
+    z-index: 2;         
+}
+/* .page-head{
+    position: relative;
+    z-index: 2;
+} */
+.masthead ul li{
+    list-style: none;
+}
+.masthead h1{
+    font-size: 60px;
+    font-weight: 700; /* 字体粗细大小为700*/
+}
+.masthead h1, .masthead p{
+    color: #fff;
+}
+.masthead ul li a{
+    color: rgba(255, 255, 255, 0.5);
+}
+@media screen and (min-width:768px){ 
+    .masthead{
+        padding: 90px 0 110px;
+    }
+    .masthead h1{
+        font-size: 90px;
+    }
+}
+
+/* 页头*/
+.page-head {
+    padding: 15px 0;
+    text-align: center;
+    background-color: #f5f5f5;
+    border-top: 1px solid #fff;
+    border-bottom: 2px solid #ddd;
+    color: #555;
+    width: 100%;
+}
+.page-head ul{
+    padding: 0;
+    margin: 0;
+    margin-left: 40px;
+}
+.page-head li{
+    padding: 0;
+    margin: 0 10px 0 0 ;  
+    padding-right: 10px;
+    list-style: none;
+}
+.page-head ul li{
+    display: inline-block;
+    height: 16px;
+    line-height: 16px;
+}
+.page-head ul li:nth-child(2):hover{
+    color: #f66700;
+}
+.page-head ul li a{
+    color: #555;
+    font-size: 16px;
+}
+.page-head li:first-child{
+    border-right: 1px solid #888;
+}
+.page-text h1{
+    font-size: 42px;
+    /* width: 550px; */
+    margin: 0 auto;
+    padding-top: 50px;
+    text-align: center;
+}
+.page-text p{ 
+    /* width: 550px; */
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 20px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #eee;
+}
+@media screen and (min-width:450px) and (max-width:768px){ 
+    .page-text h1{
+        width: 435px;
+        padding-top: 30px;
+    }
+    .page-text p{ 
+        width: 550px;
+        margin-top: 10px;
+    }
+} 
+
+
+/* 缩略图*/
+.row .caption{
+    height: 200px;
+}
+.row .caption h3,.row .caption p{
+    text-align: center;
+}
+.row .thumbnail img{
+    width: 100%;
+}
+@media screen and (min-width:450px) and (max-width:768px){
+    .row .col-sm-6{
+        width: 450px;
+        margin: 0 auto;
+    }
+}
+
+/* 页脚 */
+.foot{
+    color: #777;
+    padding: 30px 0;
+    border-top: 1px solid #e5e5e5;
+    margin-top: 70px;
+    margin-bottom: 60px;
+    font-size: 16px;
+}
+
+/* .foot a{
+    text-decoration: none;  去掉超链接下划线
+} */
+.foot-left{
+    float: left;
+    height: 83px;
+    width: 550px;
+}
+.foot-left p{
+    margin-top: 10px;
+}
+.foot-right{
+    float: right;
+    height: 120px;
+    width: 485px;
+}
+.foot-right ul{
+    float: left;
+    height: 150px;
+    margin: 0 auto;
+}
+.foot::after,.foot::before,
+.foot-right::after,.foot-right::before{  /* 清理浮动*/
+    display: table;
+    content: "";
+}
+.foot::after,.foot-right::after{
+    clear: both;
+}
+.foot-right li{
+    list-style: none;   
+}
+.foot-right li a{
+    color: #777;  
+}
+.foot-right ul li:first-child a{ /* 要精确到a标签*/
+    cursor: crosshair;   /* cursor 属性规定要显示的光标的(形状)  此处为十字架*/
+    text-decoration: none;
+    color: #563d7c;
+    font-size: 20px;
+}
+.foot-right ul li:nth-child(2){
+    margin-top: 10px;
+}
+@media screen and (max-width:1000px){
+    .foot-left{
+        /* margin-top: 20px; */
+        width: 100%;
+    }
+}
+@media screen and (max-width:700px){
+    .foot-left{
+        margin-left: 20px;
+    }
+}
+@media screen and (max-width:1200px){
+    .foot-right{
+        margin-top: 50px;
+        margin-left: 50px; 
+        width: 100%;
+        float: none;
+        font-size: 16px;
+    }
+    .foot-left{
+        /* margin-top: 20px; */
+        width: 100%;
+    }
+}
+
+
+.foot-last ul{   /* 常对ul使用flex布局*/
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid #e5e5e5;
+    padding-top: 20px;
+    margin-bottom: 50px;
+    color: #777;
+    font-size: 16px;
+}
+.foot-last ul li a{
+    color: #777;
+    font-size: 16px;
+    height: 22px;
+    line-height: 22px;
+}
+.foot-last span{
+    margin: 0 10px;
+    color: #777;
+}
+@media screen and (max-width:400px){
+    .foot-last ul .jing{
+        display: block;
+        width: 200px;
+    }
+}

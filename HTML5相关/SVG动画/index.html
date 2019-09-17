@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG动画</title>
+    <style>
+        body{
+            font-size: 0px;     /* 去掉编译文本中的因多个空格所占的空间*/
+            margin: 0;          /* body有默认的8px的margin值*/
+            background: #333;  /*#333灰色背景*/ 
+        }
+    
+        .demo1,.demo2{
+            display: inline-block;
+        }
+        .demo{
+            width: 604px;   /* marign: 0 auto水平居中仅仅对确定宽度的块元素有效*/
+            margin: 0 auto;
+        }
+        .demo1 svg,.demo2 svg{
+            border: 1px solid orange;
+            background: #fff;
+            font-size: 20px;
+            border: 1px solid blue;
+        }
+        .wrapper{
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            margin-top: 10px;
+            border: 2px solid #ff6700;
+        }
+        .item{
+            position: relative;
+            display: inline-block;
+            width: 150px;
+            height: 150px;
+        }
+        .item svg{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -10px;
+            margin-left: -9px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="demo">
+        <div class="demo1">
+            <svg width="300" height="300" xmlns="http://www.w3.org/200/svg">
+                <text x="0" y="0" stroke="#ff6700">好好学习
+                    <animate attributeName="x" from="0" to="300" begin="0s" dur="1.5s" repeatCount="indefinite"></animate>
+                    <animate attributeName="y" from="0" to="300" begin="0s" dur="1.5s" repeatCount="indefinite"></animate>
+                </text>
+            </svg>
+        </div>
+        <div class="demo2">
+            <svg width="300" height="300" xmlns="http://www.w3.org/200/svg">
+                <text x="0" y="0" stroke="#ff6700">天天向上
+                    <animateMotion path="M 0 300 C 100 250,150 250, 250 150" rotate="auto" begin="1.5s" dur="1.5s" repeatCount="indefinite">
+                </text>
+            </svg>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div class="item item1">
+            <svg width="18" height="20" xmlns="http://www.w3.org/200/svg"> 
+                <rect x="0" y="0" width="6" height="20" fill="#ff6700">
+                    <animate attributeName="opacity" from="0" to="1" begin="0s" dur="0.6s" repeatCount="indefinite"></animate>
+                </rect>
+                <rect x="6" y="0" width="6" height="20" fill="#ff6700">
+                    <animate attributeName="opacity" from="0" to="1" begin="0.2s" dur="0.6s" repeatCount="indefinite"></animate>
+                </rect>
+                <rect x="12" y="0" width="6" height="20" fill="#ff6700">
+                    <animate attributeName="opacity" from="0" to="1" begin="0.4s" dur="0.6s" repeatCount="indefinite"></animate>
+                </rect>
+            </svg>
+        </div>
+
+        <div class="item item2">
+            <svg width="18" height="20" xmlns="http://www.w3.org/200/svg"> 
+                <rect x="0" y="0" width="6" height="20" fill="#ff6700">
+                    <animate attributeName="height" from="0" to="20" begin="0s" dur="0.6s" repeatCount="indefinite"></animate>
+                </rect>
+                <rect x="6" y="0" width="6" height="20" fill="#ff6700">
+                    <animate attributeName="height" from="0" to="20" begin="0.2s" dur="0.6s" repeatCount="indefinite"></animate>
+                </rect>
+                <rect x="12" y="0" width="6" height="20" fill="#ff6700">
+                    <animate attributeName="height" from="0" to="20" begin="0.4s" dur="0.6s" repeatCount="indefinite"></animate>
+                </rect>
+            </svg>
+        </div>
+ 
+        <div class="item item3">
+            <svg width="18" height="20" xmlns="http://www.w3.org/200/svg"> 
+                <rect x="0" y="0" width="6" height="10" fill="#ff6700">
+                    <animate attributeName="y" values="0;10;0" begin="0s" dur="0.6s" repeatCount="indefinite"></animate>
+                </rect>
+                <rect x="6" y="0" width="6" height="10" fill="#ff6700">
+                    <animate attributeName="y" values="0;10;0" begin="0.2s" dur="0.6s" repeatCount="indefinite"></animate>
+                </rect>
+                <rect x="12" y="0" width="6" height="10" fill="#ff6700">
+                    <animate attributeName="y" values="0;10;0" begin="0.4s" dur="0.6s" repeatCount="indefinite"></animate>
+                </rect>
+            </svg>
+        </div>
+    
+        <div class="item item4">
+            <svg width="18" height="20" xmlns="http://www.w3.org/200/svg"> 
+                <rect x="0" y="7" width="6" height="6" fill="#ff6700">
+                    <animate attributeName="height" values="6;20;6" begin="0s" dur="0.6s" repeatCount="indefinite"></animate>
+                    <animate attributeName="y" values="7;0;7" begin="0s" dur="0.6s" repeatCount="indefinite"></animate>
+                </rect>
+                <rect x="6" y="7" width="6" height="6" fill="#ff6700">
+                    <animate attributeName="height" values="6;20;6" begin="0.2s" dur="0.6s" repeatCount="indefinite"></animate>
+                    <animate attributeName="y" values="7;0;7" begin="0.2s" dur="0.6s" repeatCount="indefinite"></animate>
+                </rect>
+                <rect x="12" y="7" width="6" height="6" fill="#ff6700">
+                    <animate attributeName="height" values="6;20;6" begin="0.4s" dur="0.6s" repeatCount="indefinite"></animate>
+                    <animate attributeName="y" values="7;0;7" begin="0.4s" dur="0.6s" repeatCount="indefinite"></animate>
+                </rect>
+            </svg>
+        </div>
+    </div>
+</body>
+</html>

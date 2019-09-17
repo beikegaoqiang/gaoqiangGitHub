@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>填写订单信息</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/checkout.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+</head>
+<body>
+    <div class="miniheader">
+        <div class="container">
+            <div class="miniheader-logo"><a href="#">小米官网</a></div>
+            <div class="miniheader-title ">
+                <h2>确认订单</h2>
+                <p>温馨提示：产品是否购买成功，以最终下单为准哦，请尽快结算</p>
+                
+            </div>
+            <div class="miniheader-info">
+                <i class="iconfont">&#x221a;</i>
+                <a href="#" class="user-name"><span>1506329840</span></a>
+                <span class="sep">|</span>
+                <a href="#" class="info-order">我的订单</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="checkout">
+        <div class="container">
+            <div class="checkout-box">
+                <div class="checkout-address clearfix">
+                    <p class="address-header">收货地址</p>
+                    <div class="address-body">
+                        <!-- 有select时候才会修改字样 -->
+                        <div class="address-item select">
+                            <dl>
+                                <dt>cc哥</dt>
+                                <dd>133****3333</dd>
+                                <dd>上海 上海市 浦东新区 祝桥镇</dd>
+                                <dd>这是详细地址</dd>
+                            </dl>
+                            <div class="actions"><a href="javascriptvoid(0)">修改</a></div>
+                        </div>
+                        <div class="address-item">
+                            <dl>
+                                <dt>cc哥</dt>
+                                <dd>133****3333</dd>
+                                <dd>上海 上海市 浦东新区 祝桥镇</dd>
+                                <dd>这是详细地址</dd>
+                            </dl>
+                            <div class="actions"><a href="javascriptvoid(0)">修改</a></div>
+                        </div>
+
+                        <div class="address-item address-new">
+                            <i class="iconfont">&#xe609;</i>
+                            添加新地址
+                        </div>
+                    </div>
+                </div>
+                <div class="checkout-goods">
+                    <p class="goods-header">商品</p>
+                    <div class="goods-body">
+                        <ul class="goods-list clearfix">
+                            <li class="clearfix">
+                                <div class="goods-img"><img src="img/goods1.jpg" alt=""></div>
+                                <div class="goods-name"><a href="#">小米平板4 8英寸LTE版 4GB内存 黑色 64GB</a></div>
+                                <div class="goods-price">1499元 x 1</div>
+                                <div class="goods-total">1499元</div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="goods-img"><img src="img/goods1.jpg" alt=""></div>
+                                <div class="goods-name"><a href="#">小米平板4 8英寸LTE版 4GB内存 黑色 64GB</a></div>
+                                <div class="goods-price">1499元 x 1</div>
+                                <div class="goods-total">1499元</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="checkout-count clearfix">
+                    <div class="count-box">
+                        <ul>
+                            <li>
+                                <label>商品件数：</label>
+                                <span>3件</span>
+                            </li>
+                            <li>
+                                <label>商品总价：</label>
+                                <span>4898元</span>
+                            </li>
+                            <li>
+                                <label>活动优惠：</label>
+                                <span>-0元</span>
+                            </li>
+                            <li>
+                                <label>优惠券抵扣：</label>
+                                <span>-0元</span>
+                            </li>
+                            <li>
+                                <label>运费：</label>
+                                <span>0元</span>
+                            </li>
+                            <li class="total-price">
+                                <label>应付总额：</label>
+                                <span><em>4898</em>元</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="checkout-bar clearfix">
+                    <div class="bar-btn"><a href="javascript:void(0);">去结算</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="edit-bg"></div>
+    <div class="edit-address">
+        <div class="edit-header">
+            <span class="title">添加收获地址</span>
+            <a href="javascript:void(0);" class="close"><i class="iconfont">&#xe602;</i></a>
+        </div>
+        <div class="edit-body">
+            <div class="body-form clearfix">
+                <div class="form-section form-name">
+                    <label for="user_name">姓名</label>
+                    <input type="text" name="user_name" class="input-text name-input" value=" " placeholder="收货人姓名">
+                </div>
+                <div class="form-section form-phone">
+                    <label for="user_phone">手机号</label>
+                    <input type="text" name="user_phone" class="input-text phone-input" value=" " placeholder="手机号">
+                </div>
+                <div class="form-section form-area">
+                    <input type="text" name="user_area" class="input-text area-input" value="选择省 / 市 / 区 / 街道" placeholder="">
+                </div>
+                <div class="form-section form-detail">
+                    <label for="user_detail">详细地址</label>
+                    <textarea type="textarea" name="user_detail" class="input-text detail-input"  placeholder="详细地址，路名或街道名称，门牌号"> </textarea>
+                </div>
+
+                <div class="form-section form-zipcode">
+                    <label for="user_zipcode">邮政编码</label>
+                    <input type="text" name="user_zipcode" class="input-text zipcode-input" value=" " placeholder="">
+                </div>
+                <div class="form-section form-tag">
+                    <label for="user_tag">地址标签</label>
+                    <input type="text" name="user_tag" class="input-text tag-input" value=" " placeholder='如"家"、"公司"。限5个字内'>
+                </div>
+            </div>
+
+            <div class="form-select">
+                <span class="select-close">x</span>
+                <div class="select-box clearfix">
+                    <div class="select-item" data-init-txt="选择省份/自治区">选择省份/自治区</div>
+                    <div class="select-item " data-init-txt="选择城市/地区">选择城市/地区</div>
+                    <div class="select-item hidden" data-init-txt="选择区县">选择区县</div>
+                    <div class="select-item hidden" data-init-txt="选择配送区域">选择配送区域</div>
+                </div>
+                <div class="option-box">
+                    <ul class="option-list clearfix">
+                        <li date-value="2" data-txt="北京">北京</li>
+                        <li date-value="3" data-txt="上海">上海</li>
+                    </ul>
+                    <ul class="option-list clearfix hidden">
+                        <li date-value="108" data-txt="上海市">上海市</li>
+                    </ul>
+                    <ul class="option-list clearfix hidden">
+                        <li date-value="2" data-txt="黄浦区">黄浦区</li>
+                        <li date-value="3" data-txt="虹口区">虹口区</li>
+                        <li date-value="2" data-txt="黄浦区">黄浦区</li>
+                        <li date-value="3" data-txt="虹口区">虹口区</li>
+                        <li date-value="2" data-txt="黄浦区">黄浦区</li>
+                        <li date-value="3" data-txt="虹口区">虹口区</li>
+                        <li date-value="2" data-txt="黄浦区">黄浦区</li>
+                        <li date-value="3" data-txt="虹口区">虹口区</li>
+                        <li date-value="2" data-txt="黄浦区">黄浦区</li>
+                        <li date-value="3" data-txt="虹口区">虹口区</li>
+                    </ul>
+                    <ul class="option-list clearfix hidden">
+                        <li date-value="2" data-txt="白鹤镇">白鹤镇</li>
+                        <li date-value="3" data-txt="康桥镇">康桥镇</li>
+                        <li date-value="2" data-txt="白鹤镇">白鹤镇</li>
+                        <li date-value="3" data-txt="康桥镇">康桥镇</li>
+                        <li date-value="2" data-txt="白鹤镇">白鹤镇</li>
+                        <li date-value="3" data-txt="康桥镇">康桥镇</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="edit-footer">
+            <a href="javascript:void(0);" class="btn btn-primary">保存</a>
+            <a href="javascript:void(0);" class="btn btn-gray">取消</a>
+        </div>
+    </div>
+
+    <script>
+    
+    </script>
+</body>
+</html>

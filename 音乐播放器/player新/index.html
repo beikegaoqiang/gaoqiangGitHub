@@ -1,0 +1,115 @@
+<!-- 功能最全播放器介绍：
+一、播放条拖动功能：可进行拖动条和当前播放博时间的显示。
+        1.且在暂停的时候也可进行播放条拖动，松开时不进行播放，再次点击播放时，才从当前位置进行播放。
+        2.切歌后拖动功能正常。
+二、切歌功能： 
+        1.切歌遵循当前的播放模式
+        2.切歌后不影响其他功能
+三、快进慢放功能
+        1.快进慢放时图片旋转也跟着加速或者减缓
+        2.在快进慢放时拖动进度条释放后，保持之前的速度
+        3.切歌后，速度回归正常
+四、图片更换和旋转功能
+        1.图片随着对应歌曲，当前播放歌曲更换则图片也更换
+        2.随着歌曲播放，图片进行旋转
+五、音量调节功能
+        1.类同播放条拖动功能
+六、播放列表显示功能
+        1.根据当前播放的音乐进行样式显示
+        2.模式切换时不影响样式显示效果
+七、播放模式切换功能
+        1.可进行顺序循环播放(默认)、单曲循环播放、随机循环播放三种模式的切换
+        2.切换后不影响其他功能 -->
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>功能最全播放器</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./font_gmhu7jugevf/iconfont.css">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- 图片播放区域 -->
+        <main class="play">
+            <img id ="img" src="img/20.jpg" alt="">
+            <audio id="music" src=""></audio>
+        </main>
+        <!-- 播放列表区域 -->
+        <div class="playListBlock">
+            <ul>
+                <li><span class="iconfont"></span>&nbsp;1.  比你更爱我的人</li>
+                <li><span class="iconfont"></span>&nbsp;2.  曾经的你</li>
+                <li><span class="iconfont"></span>&nbsp;3.  痴心绝对</li>
+                <li><span class="iconfont"></span>&nbsp;4.  等一分钟</li>
+                <li><span class="iconfont"></span>&nbsp;5.  都选C</li>
+                <li><span class="iconfont"></span>&nbsp;6.  飘向北方</li>
+                <li><span class="iconfont"></span>&nbsp;7.  拥抱的理由</li>
+                <li><span class="iconfont"></span>&nbsp;8.  勇气</li>
+                <li><span class="iconfont"></span>&nbsp;9.  最初的梦想</li>
+                <li><span class="iconfont"></span>&nbsp;10. 天使</li>
+            </ul>
+        </div>
+        <!-- 控件区域 -->
+        <div class="tool">
+            <!-- 上一首按钮 -->
+            <div class="btn-previous">
+                <span class="iconfont">&#xe610;</span>
+            </div>
+            <!-- 下一首按钮 -->
+            <div class="btn-next">
+                <span class="iconfont">&#xe611;</span>
+            </div>
+            <!-- 播放按钮 -->
+            <div class="btn">
+                <span class="iconfont">&#xe624;</span>
+            </div>
+            <!-- 进度条 -->
+            <div class="progress">
+                <div class="current-time"></div>
+                <div class="line-box">
+                    <div class="line-bg"></div>
+                    <div class="line-active">
+                        <div class="radio-box">
+                            <span class="radio"></span>
+                        </div>
+                    </div>  
+                </div>
+                <div class="all-time"></div>
+            </div>
+            <!-- 快进按钮 -->
+            <div class="btn-fast">
+                <span class="iconfont">&#xe62e;</span>
+            </div>
+            <!-- 慢放按钮 -->
+            <div class="btn-low">
+                <span class="iconfont">&#xe62d;</span>
+            </div>
+             <!-- 播放模式 -->
+             <div class="playstyle">
+                <span class="iconfont">&#xe62b;</span>
+            </div>
+            <!-- 音量 -->
+            <div class="volumn">
+                <span class="iconfont">&#xe61a;</span>
+            </div>
+            <!-- 音量进度条 -->
+            <div class="justify">
+                <div class="justify-box">
+                    <div class="justify-bg"></div>
+                    <div class="justify-active">
+                        <div class="point-box">
+                            <span class="point"></span>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="./js/index.js"></script>
+</body>
+</html>

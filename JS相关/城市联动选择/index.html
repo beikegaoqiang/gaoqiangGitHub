@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>三级城市联动选择</title>
+</head>
+<body>
+    <select name="" id="first"></select>
+    <select name="" id="second"></select>
+    <select name="" id="third"></select>
+
+
+
+    <script>
+        var first = document.getElementById("first");  
+        var second = document.getElementById("second");
+        var third = document.getElementById("third");
+
+        var provinceList = [
+                {  name: "北京",  
+                cityList: [          // 二级联动数据处理： 把provinceList(一级数据组)内的数组元素包装成元素，元素有name(一级省份)和cityList(二级数组)
+                            {  name: "一点区" ,         
+                                townList: ["1点1镇","点2镇","点3镇","点4镇","点5镇"]  // 三级联动数据处理： 把provinceList(一级数据组)内的数组元素包装成元素，元素有name(二级城市)和townList(三级数据组)
+                            },
+                            {  name: "一嘿区" ,
+                                townList: ["1嘿1镇","嘿2镇","嘿3镇","嘿4镇","嘿5镇"]
+                            },
+                            {  name: "一黑区" ,
+                                townList: ["1黑1镇","黑2镇","黑3镇","黑4镇","黑5镇"]
+                            },
+                            {  name: "一白区" ,
+                                townList: ["1白1镇","白2镇","白3镇","白4镇","白5镇"]
+                            },
+                            {  name: "一打区" ,
+                                townList: ["1打1镇","打2镇","打3镇","打4镇","打5镇"]
+                            },
+                            ],
+                },
+                {  name: "上海",
+                cityList: [
+                            {  name: "二点区" ,
+                                townList: ["2点1镇","点2镇","点3镇","点4镇","点5镇"]
+                            },
+                            {  name: "二嘿区" ,
+                                townList: ["2嘿1镇","嘿2镇","嘿3镇","嘿4镇","嘿5镇"]
+                            },
+                            {  name: "二黑区" ,
+                                townList: ["2黑1镇","黑2镇","黑3镇","黑4镇","黑5镇"]
+                            },
+                            {  name: "二白区" ,
+                                townList: ["2白1镇","白2镇","白3镇","白4镇","白5镇"]
+                            },
+                            {  name: "二打区" ,
+                                townList: ["2打1镇","打2镇","打3镇","打4镇","打5镇"]
+                            },
+                            ],
+                },
+                {  name: "山东",
+                cityList: [
+                            {  name: "三点区" ,
+                                townList: ["3点1镇","点2镇","点3镇","点4镇","点5镇"]
+                            },
+                            {  name: "三嘿区" ,
+                                townList: ["3嘿1镇","嘿2镇","嘿3镇","嘿4镇","嘿5镇"]
+                            },
+                            {  name: "三黑区" ,
+                                townList: ["3黑1镇","黑2镇","黑3镇","黑4镇","黑5镇"]
+                            },
+                            {  name: "三白区" ,
+                                townList: ["3白1镇","白2镇","白3镇","白4镇","白5镇"]
+                            },
+                            {  name: "三打区" ,
+                                townList: ["3打1镇","打2镇","打3镇","打4镇","打5镇"]
+                            },
+                            ],
+                },
+            ];   
+
+        // 一级       一级select数据组为：provinceList
+        for( var i = 0; i < provinceList.length; i++ ){
+            var option = new Option( provinceList[i].name , provinceList[i].name );       // ！！！创建一个Option对象，传入的第一个字符串为text，第二个字符串为value。不可缺，可相同。
+            first.options.add(option);                                             // 此两行也可写成 first.options.add(provinceList[i],provinceList[i]);
+        }
+         
+
+        //   1.监听选中操作   2.动态创建select和其中对用的option选项 
+        // 二级联动    二级select数据组为：cityList
+        first.onchange = changeProvince;    // onchange事件，当有做改变的时候触发
+        var a = changeProvince();       // ！！！ 进行初始化,在没进行选择改变的时候先运行一下函数，给二级select添加上初始的option
+                                   // ！！！与只写 changeProvince(); 效果相同，只要函数名+小括号格式，小括号一出现就代表立马执行一次此函数，
+        function changeProvince(){
+            second.options.length = 0;   // ！！！当重新选择一级select选项框中的选项时，会清空先前的二级select，避免出现累积的情况
+
+            var cityAry = provinceList[first.selectedIndex].cityList;  // ！！！获取到当前一级select选项框中所选中的选项内的cityList数组
+            for( var i = 0; i < cityAry.length; i++ ){                 // ！！！ first.selectedIndex 返回在一级select选项框(first)中所选中的序号
+                var option = new Option( cityAry[i].name , cityAry[i].name ); 
+                second.options.add(option);
+            }
+
+            changeCity()  // ！！！BUG：沿用了二级联动中的first.selectedIndex，就会使得当second.selectedIndex不变，仅first.selectedIndex改变时，三级选项内容不变 
+                          //    解决: 在二级联动的函数里面执行一下三级联动函数即可，即可实现当改变一级框触发二级联动函数时，实现三级框的初始化
+        }
+
+        // 三级联动    三级select数据组为：townList
+        second.onchange = changeCity;
+        var b = changeCity();
+        function changeCity(){
+            third.options.length = 0;
+
+            var townAry = provinceList[first.selectedIndex].cityList[second.selectedIndex].townList; 
+            
+            for( var i = 0; i < townAry.length; i++ ){
+                var option = new Option( townAry[i] , townAry[i] );
+                third.options.add(option);
+            }
+        }
+
+
+    </script>
+</body>
+</html>

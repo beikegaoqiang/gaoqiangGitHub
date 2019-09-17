@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS3选项卡</title>
+    <style>
+        body,ul,li{    /* ！！！此处为了节省代码行在li下设置了字体大小为0(本来在ul下设置即可)，注意以下重新定义字体大小时，注意选择器的权重问题*/
+            font-size: 0;
+            margin: 0;
+            list-style: none;
+            padding: 0;
+        }
+
+        input {
+            /* ！！！！input有默认的2px的margin值，有默认的2px像素的border*/
+            margin: 0;
+            width: 30px;
+            height: 30px;
+        }
+       
+        p {
+            font-size: 20px;
+            width: 306px;
+            margin: 0px;
+        }
+         /* 第一部分：通过input的checked和毗邻元素选择器实现CSS3选项卡*/
+        .one{
+            float: left;
+            margin-left: 20px;
+            width:406px;
+        }
+     
+        .frame {
+            width: 406px;
+            height: 406px;
+            border: 3px solid #000;
+            /* 让整个元素水平居中*/
+            margin: 0 auto;
+            /* ！！！！水平居中：此命令不但对元素内文本有效，也对行级块元素(如input)也有效*/
+            text-align: center;
+        }
+
+        .frame div {
+            /* ！！！！！使3个div都脱离文档流，所以位置在文档流执行的末尾后*/
+            position: absolute;
+            font-size: 20px;
+            width: 400px;
+            height: 370px;
+            line-height: 370px;
+            border: 3px solid pink;
+            display: none;
+        }
+
+        .one input:checked + div {
+            display: block;
+        }
+        /* 第二部分：通过label的for属性和Input的id值的联系实现CSS3选项卡：*/
+        .two{
+            float: right;
+            width: 300px;
+            margin-right: 100px; 
+        }
+        label{
+            display: inline-block;
+            font-size: 20px;
+            width: 100px;
+            height: 38px;
+            line-height: 38px;
+            background: #ff6700;
+            text-align: center;   /* 使label内的文本左右居中*/
+        }
+        .two input{
+            display: none;
+        }
+        .two .nav{
+            width: 306px;
+            height: 40px;
+            margin: 0 auto;
+            border: 3px solid red;
+        }
+        .two .nav li{
+           width: 100px;
+           height: 38px;
+           display: inline-block;
+           border: 1px solid blue;
+        }
+        .two .frame2 .content li{
+           border: 5px solid orchid;
+           width: 302px;
+           height: 200px;
+           display: block;
+           font-size: 20px;
+           display: none;
+        }
+        /* 设置选项卡内容的显示*/
+        #hot:checked ~ .frame2 .hot-news{  /* !!！frame2(div)和inpt是同级元素*/
+            display: block;
+        }
+        #home:checked~ .frame2 .home-news{
+            display: block;
+        }
+        #int:checked~ .frame2 .int-news{
+            display: block;
+        }
+        /* 设置选项卡被选中时的样式*/
+        #hot:checked ~ nav .hot{
+            background: #fff;
+        }
+        #home:checked ~ nav .home{
+            background: #fff;
+        }
+        #int:checked ~ nav .int{
+            background: #fff;
+        }
+        
+
+    </style>
+</head>
+
+<body>
+    <div class="one">
+        <p>一、通过input的checked和毗邻元素选择器实现CSS3选项卡：</p>
+        <div class="frame">
+            <!-- 如果想实现单选框，name值必须相同，即name="tab"  -->
+            <!-- 给与初始状态checked -->
+            <input type="radio" class="radio" name="tab" checked>
+            <div>冰姐最美！！！！！！！！</div>
+            <input type="radio" class="radio" name="tab">
+            <div>CC哥最帅！！！！！！！！！</div>
+            <input type="radio" class="radio" name="tab">
+            <div>我最努力！！！！！！！！</div>
+        </div>
+    </div>
+    <div class="two">
+        <p>一、通过label的for属性和Input的id值的联系实现CSS3选项卡：</p>
+        <input type="radio" name="tab1" id="hot" checked>
+        <input type="radio" name="tab1" id="home">
+        <input type="radio" name="tab1" id="int">
+        <nav>
+            <ul class="nav">
+                <li><label for="hot" class="hot">热度新闻</label></li>
+                <li><label for="home" class="home">家庭新闻</label></li>
+                <li><label for="int" class="int">国际新闻</label></li>
+            </ul>
+        </nav>
+        <div class="frame2">
+            <ul class="content">
+                <!-- a href="javascript:;" 取消超链接的链接功能，点击时不再刷新页面 -->
+               <li class="hot-news"><a href="javascript:;">念德赛能否能</a></li>
+               <li class="home-news"><a href="javascript:;">萨覅短时防守必</a></li>
+               <li class="int-news"><a href="javascript:;">三佛爱死你发</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>网站二级下拉菜单</title>
+    <link rel="stylesheet" href="index.css"> <!-- link:css link:favicon -->
+</head>
+<body>
+    <div class="top">
+        <div class="container">
+            <ul class="caidan clearfixed" id="navList">
+
+                <li>
+                    <a href="">首页</a>
+                </li>
+                <li>       <!-- 控制class名进行二级菜单的显示与隐藏-->
+                    <a href="">关于蝉壳</a>
+                       <div class="item">
+                           <ul class="item-list">
+                               <li><a href="">关于蝉壳1</a></li>
+                               <li><a href="">关于蝉壳2</a></li>
+                               <li><a href="">关于蝉壳3</a></li>
+                           </ul>
+                       </div>
+                </li>
+                <li>
+                    <a href="">新闻与媒体</a>
+                       <div class="item">
+                           <ul class="item-list">
+                               <li><a href="">cc哥帅1</a></li>
+                               <li><a href="">cc哥帅2</a></li>
+                               <li><a href="">cc哥帅3</a></li>
+                           </ul>
+                       </div>
+                </li>
+                <li>
+                    <a href="">产品</a>
+                        <div class="item">
+                            <ul class="item-list">
+                                <li><a href="">CC哥还帅1</a></li>
+                                <li><a href="">CC哥还帅2</a></li>
+                                <li><a href="">CC哥还帅3</a></li>
+                            </ul>
+                        </div>
+                </li>
+                <li>
+                    <a href="">服务与机构</a>
+                        <div class="item">
+                            <ul class="item-list">
+                                <li><a href="">CC哥最帅1</a></li>
+                                <li><a href="">CC哥最帅2</a></li>
+                                <li><a href="">CC哥最帅3</a></li>
+                            </ul>
+                        </div>
+                </li>
+                <li>
+                    <a href="">人才招聘</a>
+                        <div class="item">
+                            <ul class="item-list">
+                                <li><a href="">关于蝉壳1</a></li>
+                                <li><a href="">关于蝉壳2</a></li>
+                                <li><a href="">关于蝉壳3</a></li>
+                                <li><a href="">关于蝉壳4</a></li>
+                                <li><a href="">关于蝉壳5</a></li>
+                                <li><a href="">关于蝉壳6</a></li>
+                                <li><a href="">关于蝉壳7</a></li>
+                                <li><a href="">关于蝉壳8</a></li>
+                                <li><a href="">关于蝉壳9</a></li>
+                                <li><a href="">关于蝉壳10</a></li>
+                                <li><a href="">关于蝉壳11</a></li>
+                                <li><a href="">关于蝉壳12</a></li>
+                            </ul>
+                        </div>
+                </li>
+                <li>
+                    <a href="">联系我们</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        var navList = document.getElementById("navList").getElementsByTagName("li"); //获得特定ul下的li标签
+        for(var i = 0;i < navList.length;i++){      // 遍历各li标签，绑定事件
+            navList[i].onmouseover = function(){    // 绑定鼠标移动事件
+                 if( this.className != "show" ) {   // 添加优化。较少修改量(不加此判断时，class为show也会触发修改)
+                    this.className = "show";
+                    var twoList = this.getElementsByTagName("li"); // ！！！！ 获得this下的li数组，通过判断其长度，进行是否转行的操作
+                    if(twoList.length > 0){                      // 1.边界干扰问题
+                        var a = this.getElementsByTagName("a"); 
+                        a[0].className = "have";
+                    }
+                    if(twoList.length > 3){                      // 2.二级菜单换行问题
+                        this.className = "big";
+                    }
+                 }else{
+                    this.className = " ";
+                 }
+              
+            }
+            navList[i].onmouseout = function(){    // 绑定鼠标移动事件
+                if(this.className != " ") {
+                    this.className = " ";
+                 }
+            }
+        }
+    </script>
+    
+</body>
+</html>

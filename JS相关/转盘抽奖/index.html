@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>吴仙仙转盘抽奖</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  
+    <table id="pan">
+        <tr>
+            <td class="0" id="play" style="font-size: 0"><img src="image/11.jpg" alt=""></td>
+            <td class="1">她叫吴戈</td>
+            <td class="2" style="font-size: 0"><img src="image/3.jpg" alt="" ></td> <!--给有图片的td添加字体大小为0命令，图片下面就不会多出一行-->
+            <td class="3">也叫仙仙</td>
+            <td class="4" style="font-size: 0"><img src="image/12.jpg" alt=""></td>
+        </tr>
+        <tr>
+            <td class="15">运气爆棚</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="5">善良可爱</td>
+        </tr>
+        <tr>
+            <td class="14" style="font-size: 0"><img src="image/4.jpg" alt=""></td>
+            <td></td>
+            <td class="start" id="start">开始</td>
+            <td></td>
+            <td class="6" style="font-size: 0"><img src="image/5.jpg" alt=""></td>
+        </tr>
+        <tr>
+            <td class="13">如果抽中</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="7">贤惠懂事</td>
+        </tr>
+        <tr>
+            <td class="12" style="font-size: 0"><img src="image/13.jpg" alt=""></td>
+            <td class="11" >青春无敌</td>
+            <td class="10" style="font-size: 0"><img src="image/2.jpg" alt=""></td>
+            <td class="9" >大方美丽</td>
+            <td class="8" style="font-size: 0"><img src="image/14.jpg" alt=""></td>
+        </tr>
+    </table>
+    
+    <div class = "kuang">
+        <p>获得奖品：</p>
+        <div class = "jiangpin" id = "jiangpin">
+            <div id="active">猜猜你能抽到什么呢?</div>
+            <div><img src="image/11.jpg" alt=""></div>
+            <div>再抽一次吧!</div>
+            <div><img src="image/3.jpg" alt="" ></div>
+            <div>再接再厉吧!</div>
+            <div><img src="image/12.jpg" alt=""></div>
+            <div>下一次更好！</div>
+            <div><img src="image/5.jpg" alt=""></div>
+            <div>就差一点了！</div>
+            <div><img src="image/14.jpg" alt=""></div>
+            <div>运气太差了吧！</div>
+            <div><img src="image/2.jpg" alt=""></div>
+            <div>臭猪手！</div>
+            <div><img src="image/13.jpg" alt=""></div>
+            <div>你好笨啊！</div>
+            <div><img src="image/4.jpg" alt=""></div>
+            <div>可怜虫！</div>
+        </div>
+    </div>
+
+    <script>
+        var pan = document.getElementById("pan").getElementsByTagName("td");
+        var start = document.getElementById("start");
+        var step;         // 用于统计跑多少步，以便于启停不同速度的计时器
+        var number;
+        var flag = true;  // 用于防止多次点击同时开启多个计时器
+
+       
+                    
+        start.onclick = shijian;
+        function shijian(){  // 绑定一个立即执行函数
+            start.onclick = null;  // ！！ 点击开始后，取消点击事件，让后续的点击无效
+            step = 0;  // 每次点击的时候，将步数进行置0初始化 （此处也是对全局变量step的赋值操作）
+            stepMax = 16*3 + parseInt(Math.random()*16);   // 每启动一次重置刷新获得一次stepMax
+       
+            run = setInterval(zhuan,200);  // ！！注意不能加var，否则就是成员变量，在zhuan函数中就不能对run进行关闭
+        }  
+            
+
+        var DDD = [0,1,2,3,4,9,14,19,24,23,22,21,20,15,10,5];
+        var IDD = 0;   // 必须是一个全局变量。函数zhuan在不断被调用刷新，如果IDD放在里面，那每0.5秒调用时，IDD的值都会被刷新成0。
+        function zhuan(){
+            // 把上次显示的取消显示
+            pan[ DDD[IDD] ].id = "";
+            // 进行边界值判断
+            // ！！！因为IDD是全局变量，所以当第一次转完后，再点击下一次时，IDD变量(全局变量)不会被重置为0，而是会保留停留位置的数字，这样就实现了停留位的继续转动。
+            IDD = IDD + 1 >= DDD.length ? 0 : IDD + 1; // 其中 IDD+1>5 是判断语句，是连在一起的，如果是true，则IDD=0，如果是false，则IDD=IDD+1
+            // 把本次需要显示的显示
+            pan[ DDD[IDD] ].id = "play";
+
+            // 设置跑的步数(到哪停)
+            step ++;        // 此处的step是全局变量（没在函数外声明）,因为在函数体内不带var声明的话就是全局变量
+            
+            // if(step < stepMax){
+            //     flag = false;   // ！！！即当步数没达到规定上限，设置标志位，使得继续点击开始时无法额外启动定时器
+            //     // ！真实效果： 狂点开始后，转盘不再出现起飞，但却不是点击后重新转，即之后的点击开始还是有影响的
+            //     // ！是因为点击开始后，虽然没启动计时器，但是step进行了重置   
+            //     // ？？但是为何当转动到中间加速位置的时候再点击开始，还是加速效果的旋转呢(推测是没有对step进行重置为0，而是继续当前的step)，理应从step=0开始缓慢重新转动啊
+            //     // 解决： 是因为一开始将step放在了if(flag==true)的外边，所以转动开始之后再多次点击开始时，虽然没额外启动计数器，但是对step进行了多次重置为0，所以会使当前没有被关闭的计数器
+            //     //        run = setInterval(zhuan,x); x可能是 200、50、400,在继续调用zhuan函数时的step进行了重置为0，所以会继续按当前定时器的速度调用6次，直至step == 6时，才会关闭当前的计时器，开启速度为50的计时器
+            // }
+            if(step >= stepMax){
+
+                clearInterval(run);
+                start.onclick = shijian;   // ！！ 在转盘最后一步，重新绑定事件
+                console.log("停止转动");
+                
+                // ！！！奖品池显示思路：
+                // 给转盘中的外圈格子，即有效的div格子通过class名进行编号。设立新的div组，并获取到数组(all)中，与转盘中的有效格一一对应。
+                // 在上文把通过修改格子(转动到的)的className来达到样式的增加的操作，改成通过修改id来实现。
+                // 当停下来时，被抽中格子的id是play，获取到它的class名，强转为数字，即可得其对应的编号，进而可以与数组all进行联系，再通过遍历，对className进行移动修改来控制新div组中的对应格子在奖品池中的显示
+                //   注意：也可继续使用 修改className进行转圈抽奖转动，注意id和class的特性
+                var all = document.getElementById("jiangpin").getElementsByTagName("div");
+                var newdongxi = document.getElementById("play");
+                for( var i = 0; i < all.length; i++ ){
+                      if( i == parseInt(newdongxi.className) + 1){
+                         all[i].id = "active";
+                      }else{
+                         all[i].id = "";
+                      }
+                }
+
+                return;       // 转动结束，退出函数(可去掉)
+            }
+            // 设置跑的速度
+            if( step == 8 ){
+                clearInterval(run);
+                console.log("开始加速转动");
+                run = setInterval(zhuan,60);  // 6步后加速
+            }
+            if( step + 7 == stepMax ){
+                clearInterval(run); 
+                console.log("开始减速转动");
+                run = setInterval(zhuan,400); // 最终6步减速
+            }
+        }
+
+    </script>
+    
+</body>
+</html>

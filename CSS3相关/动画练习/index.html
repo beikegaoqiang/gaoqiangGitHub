@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动画练习:图片展示 transition</title>
+
+    <style>
+        body,
+        ul,
+        li {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        ul {
+            display: flex;
+            width: 80%;
+            /* ！！！占父元素宽度的（此处为body）百分之八十。  仅ul设置了宽度，其所有子元素都不设width，靠内容撑起宽度*/
+            margin: 0 auto;
+            margin-top: 100px;   /* 要在marigin:0 auto;的下面进行书写，进行覆盖*/
+            min-width: 500px;
+            /* 设置最小宽度，当页面宽度过小时，出现滚动条*/
+            font-size: 0;
+            /* ！！！是为了消除li等块元素之间的空格所占的空间，一定要在后面需要文字的元素中重新定义字体大小*/
+        }
+
+        li {
+            position: relative;             /* ！！！用于给文本(cover)作定位包含框*/
+            /* display: inline-block; */    /* flex布局下，第一级子元素都是inline-block*/
+            /* width: 200px; */
+            margin-right: 20px;
+            border: 2px solid purple;
+            border-radius: 20px;
+            /* 设置圆角*/
+            overflow: hidden;
+            /* ！！！超出部分隐藏。  为了图片img和文本框des的显示与隐藏效果*/
+            background: black;
+        }
+
+        li img{
+            width: 100%;   /* ！！！设置了固定宽度（继承父），高度自适应，使得照片按原来的比例作为内容撑起li元素*/
+            border-radius: 20px;
+            /* 设置圆角*/
+            transform: translateY(100%);
+        }
+
+        .cover {
+            position: absolute;    /* 使文本所在的div外框位于li的底部*/
+            bottom: 0;
+            left: 0;
+            overflow: hidden;       /* ！！！解决了BUG:四面动画中，上面移出时不消失 */
+            /* height: 45px;        ！！！父级高度和宽度都不设，由内容撑开*/
+        }
+        .des{
+            font-size: 12px;
+            background: linear-gradient(to bottom, transparent,black);
+            color: #fff;
+        /* ！！！注：高度不设，靠文字内容撑起des高度，进而撑起父级cover高度。（因为5个文本框的内容不同，所以撑起的高度不同，进而导致des高度不同）*/
+            padding: 10px;
+            transform: translateY(100%);
+            /* transition: transform 0.2s linear; */
+        }  
+        /* li:hover .des{       鼠标触及时（hover）触发transition过渡
+            transform: translateY(0);
+        } */
+
+        .new img{   /* ！！！ transition过渡中，修改后的属性值所在的选择器权重一定要大于等于原属性值所在的选择器(.new img >= li img)*/
+             transform: translateY(0);
+        }
+        ul li:nth-child(1) img{          /* ！！！ 找到li最直接的父元素下的第i个li标签，再在此标签下选中里面的Img*/
+            transition: transform 2s linear 0.5s;
+        }
+        ul li:nth-child(2) img{
+            transition: transform 2s linear 0.9s;
+        }
+        ul li:nth-child(3) img{
+            transition: transform 2s linear 1.3s;
+        }
+        ul li:nth-child(4) img{
+            transition: transform 2s linear 1.7s;
+        }
+        ul li:nth-child(5) img{
+            transition: transform 2s linear 2.1s;
+        }
+
+        /* 给四个方位鼠标移入移出时的des文本框进行定位*/
+        li .cover .in-top,         /* 对原有的class名（des）进行transform的重置*/
+        li .cover .out-top
+        {
+            transform: translate(0,-100%);
+        }
+        li .cover .in-right,
+        li .cover .out-right
+        {
+            transform: translate(100%,0);
+        }
+        li .cover .in-bottom,
+        li .cover .out-bottom
+        {
+            transform: translate(0,100%);  /* 与原样式bottom相同*/
+        }
+        li .cover .in-left,  
+        li .cover .out-left
+        {
+            transform: translate(-100%,0);
+        }
+
+        /* 给进入时的des设置动画 */
+        li .cover .in-bottom,   
+        li .cover .in-top,
+        li .cover .in-left,
+        li .cover .in-right{
+            animation: inDes 0.3s linear forwards;  /* forwards保留动画最后的属性*/
+        }
+        @keyframes inDes{           /* ！！！在进入时，不管从哪个方向进入，最终位置都是0，0，所以此处不同于离开时，统一设置即可*/
+           100%{
+               transform: translate(0,0);
+           }
+        }
+
+
+        /* 给移出时的des设置动画 */
+        li .cover .out-bottom{
+            animation: outbottom 0.3s linear;  /* forwards可不用写。因为结束帧位置跟原来鼠标移入移出还没触发的时候定义的相同*/
+        }
+        @keyframes outbottom{
+            0%{              /* ！！！鼠标移出时的关键帧还是需要定义。虽然此时的位置由于forwards的作用于0,0相同，但毕竟还是动画效果，不是真属性*/
+                transform: translate(0,0);
+            }
+            100%{
+                transform: translate(0,100%);
+            }
+        } 
+        li .cover .out-top{
+            animation: outtop 0.3s linear; 
+        }
+        @keyframes outtop{
+            100%{
+                transform: translate(0,-100%);
+            }
+        } 
+        li .cover .out-left{
+            animation: outleft 0.3s linear; 
+        }
+        @keyframes outleft{
+            100%{
+                transform: translate(-100%,0);
+            }
+        } 
+        li .cover .out-right{
+            animation: outright 0.3s linear; 
+        }
+        @keyframes outright{
+            100%{
+                transform: translate(100%,0);
+            }
+        } 
+
+
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>
+            <img src="img/1.jpg" alt="">
+            <div class="cover">
+                <div class="des">你好呀啊大四能拼啊啊啊</div>   
+            </div>
+        </li>
+        <li>
+            <img src="img/2.jpg" alt="">
+            <div class="cover">
+                <div class="des">你好呀啊啊啊大三达所大所大所大达所大所大所大大四多啊啊啊</div>
+            </div>
+        </li>
+        <li>
+            <img src="img/3.jpg" alt="">
+            <div class="cover">
+                <div class="des">你好呀啊啊啊大三达所大所大所大达豆腐脑发生发大水发所大所大所大大四多啊啊啊</div>
+            </div>
+        </li>
+        <li>
+            <img src="img/4.jpg" alt="">
+            <div class="cover">
+                <div class="des">你好呀啊啊啊大三大达所大所大所大达所大所大达所大所大达所大所大达所大所大达所大所大所大四多啊啊啊</div>
+            </div>
+        </li>
+        <li>
+            <img src="img/5.jpg" alt="">
+            <div class="cover">
+                <div class="des">你好呀啊啊啊大三大达所大所大所大达所大所大达所大所大达所大所大达所大所大达所大所大达所大所大达所大所大达所大所大达所大所大所大四多啊啊啊</div>
+            </div>
+        </li>
+    </ul>
+
+    <script>
+        
+        // var ull = document.getElementsByTagName("ul")[0];
+        // var lii = ull.getElementsByTagName("li");
+        
+        // window.onload = function(){
+            
+        //     for (var i = 0; i < lii.length; i++ ){
+        //     var image = lii[i].getElementsByTagName("img");
+        //     image[i].style.transition = "transform 3s linear" + 0.5 + i + "s"; 
+        //     }
+        //     ull.className = "new";
+        // }
+
+        /* 页面初始化时的过渡效果*/
+        var ull = document.getElementsByTagName("ul")[0];  
+        window.onload = function(){
+            ull.className = "new";
+        }
+
+
+        /* 文本岁鼠标移入方向的不同进行不同方向的出现的过渡效果*/
+        var uli = document.getElementsByTagName("li");
+        for(var i = 0; i < uli.length; i++ ){
+
+            uli[i].onmouseenter = function(e){     /* e是用来接受鼠标绑定事件触发时所监视的dom元素的信息，如clienX;offsetX等*/
+                var dir = getDeirection(e,this);   /* this:此处将绑定事件的dom元素作为ele的实参传入函数*/
+                var oDes = this.getElementsByClassName("des")[0];
+                oDes.className = "des";  /* ！！！下次重新触发事件的时候，对类名进行重置(没用remove)*/
+                switch(dir){
+                    case 0 :
+                        oDes.classList.add("in-top");   /* 此时文本div框有两个类名 des和In-top*/
+                        break;
+                    case 1 :
+                        oDes.classList.add("in-right");
+                        break;
+                    case 2 :
+                        oDes.classList.add("in-bottom");
+                        break;
+                    case 3 :
+                        oDes.classList.add("in-left");
+                }
+                console.log(dir);
+            }
+            uli[i].onmouseleave = function(e){
+                var dir = getDeirection(e,this);   /* this:此处将绑定事件的dom元素作为ele的实参传入函数*/
+                var oDes = this.getElementsByClassName("des")[0];
+                oDes.className = "des";  /* 重新出发鼠标移入函数时，对类名进行重置(没用remove)*/
+                switch(dir){
+                    case 0 :
+                        oDes.classList.add("out-top");
+                        break;
+                    case 1 :
+                        oDes.classList.add("out-right");
+                        break;
+                    case 2 :
+                        oDes.classList.add("out-bottom");
+                        break;
+                    case 3 :
+                        oDes.classList.add("out-left");
+                }
+            }
+        }
+
+        function getDeirection(e,ele){   /* 目的：使一个方向（共四个）各用一个值代表*/
+            var h = ele.offsetHeight;
+            var w = ele.offsetWidth;
+            var x = (e.offsetX-w/2)*(w>h?h/w:1); 
+            var y = (e.offsetY-h/2)*(h>w?w/h:1);
+            var d = (Math.round(((Math.atan2(y,x)*(180/Math.PI))+180)/90)+3)%4;  
+            return d;
+        }
+
+    </script>
+
+</body>
+
+</html>

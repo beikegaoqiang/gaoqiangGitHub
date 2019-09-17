@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>两列三列布局的多种写法</title>
+
+    <style>
+        /* 1.三列布局：绝对定位*/
+        .wrapper1{
+            position: relative;
+            border: 1px solid #888;
+        }
+        .left1{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 200px;
+            height: 100px;
+            background: pink;
+        }
+        .center1{                  /* 左右边距*/
+            height: 300px;
+            margin-left: 200px;  
+            margin-right: 200px; 
+            background: green;
+            /* 或者也写成绝对定位形式：absolute   注：此时wrapper和其内的元素就都脱离了文档流(当有一个子元素没脱离文档流的话，wrapper也是占空间的)，下面的内容就会顶上  */
+            /* position: absolute;left:200px; right:200px; */
+        }
+        .right1{
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: orange;
+        }
+        
+         /* 2.三列布局：浮动(相比定方法，仅把left2的样式由定位改成了浮动)*/
+        .wrapper2{
+            position: relative;
+            border: 1px solid #888;
+        }
+        .left2{
+            float: left;
+            width: 200px;
+            height: 100px;
+            background: pink;
+        }
+        .center2{                /* 左右边距*/
+            height: 300px;
+            margin-left: 200px;  
+            margin-right: 200px; 
+            background: green;
+        }
+        .right2{
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: orange;
+        }
+
+         /* 3.三列布局：flex盒子布局*/
+         .wrapper3{
+            display: flex;
+            border: 1px solid #888;
+        }
+        .left3{
+            width: 200px;
+            height: 100px;
+            background: pink;
+        }
+        .center3{                 /* flex-grow拉伸*/
+            flex-grow: 1;
+            width: 1px;            /* 需要给拉伸的center3随意设置一个宽度(作为拉伸计算的基准) 或者 给left3和right3设置flex-shrink:0(不压缩)*/
+            height: 300px; 
+            background: green;
+        }
+        .right3{
+            width: 200px;
+            height: 200px;
+            background: orange;
+        }
+
+
+        /* 4.三列布局：overflow:hidden*/
+        .wrapper4{
+            position: relative;
+            border: 1px solid #888;
+        }
+        .left4{
+            float: left;
+            width: 200px;
+            height: 100px;
+            background: pink;
+        }
+        .center4{                 /* 溢出隐藏(bcf盒子)+右边距*/
+            height: 300px;
+            background: green;
+            margin-right: 200px;   /* ！！！要加上右边距*/
+            overflow: hidden;      /* 触发bcf(盒子布局规则)：独立盒子，不与其他盒子有影响关系，是独立封闭的区域。 */
+        }
+        .right4{
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: orange;
+        }
+
+    </style>
+</head>
+<body>  
+    <div class="wrapper1">
+        <div class="left1">我是左边1</div>
+        <div class="center1">我是中间1</div>
+        <div class="right1">我是右边1</div>
+    </div>
+    <div class="wrapper2">
+        <div class="left2">我是左边2</div>
+        <div class="center2">我是中间2</div>
+        <div class="right2">我是右边2</div>
+    </div>
+    <div class="wrapper3">
+        <div class="left3">我是左边3</div>
+        <div class="center3">我是中间3</div>
+        <div class="right3">我是右边3</div>
+    </div>
+    <div class="wrapper4">
+        <div class="left4">我是左边4</div>
+        <div class="center4">我是中间4</div>
+        <div class="right4">我是右边4</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>弹性盒子布局</title>
+    <style>
+        /* 导航栏*/
+        body,
+        ul,
+        li {
+            margin: 0;
+            /* ul列表前有默认的40px距离*/
+            padding: 0;
+            /* 去掉列表前的点*/
+            list-style: none;
+        }
+
+        ul {
+            width: 600px;
+            display: flex;
+            font-size: 0px;
+            background: pink;
+            margin: 0 auto;
+            border-left: 5px solid red;
+        }
+
+        li {
+            height: 50px;
+            width: 200px;
+            font-size: 16px;
+            color: black;
+            text-align: center;
+            line-height: 50px;
+            border-right: 5px solid red;
+            /* 设置拉伸比例  每个li所占空间：200+5  得4个li所占空间：4*205=820 > 600   但是还是等比例缩了 */
+            flex-grow: 1;
+            /* 设置渐变色（无效）*/
+            background:
+                linear-gradient(to right, transparent, orange 40%, orange 60%, transparent);
+            /* linear-gradient(to right,#888,transparent 40%,transparent 60%,#888); */
+        }
+
+        /* 三列布局*/
+        .frame{                  /* 父框大小靠子框内容填满*/
+            display: flex;
+            border: 1px solid #ccc;
+            min-width: 600px;   /*600>=200+200+200 当再在浏览器中压缩界面时小于600px时，会出现横向滚动条*/
+        }
+        .left{
+            width: 200px;
+            height: 200px;
+            background: purple;
+            border: 2px solid red;
+            margin-right: 50px; 
+            /* flex-shrink: 0; */
+        }
+        .right{
+            width: 200px;     /* ？？为何高度设置显示有效，但真实的显示效果却不是200px*/
+            height: 200px;         /* 解决方案1：给center随意设置个宽度(width:100px)即可，即使center在width固定值的基础上进行多余宽度的拉伸计算，而不是由内容撑开，与内容无关，另外要给父设mid-width*/
+            background: #ff6700; /* 解决方案2：给left,right设置 flex-shrink: 0;*/
+            border: 2px solid black;
+            margin-left: 50px; 
+            /* flex-shrink: 0; */
+        }
+        .center{
+            background: rgb(75, 218, 57);
+            flex-grow: 1;
+            border: 2px solid blue;
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li>你好啊</li>
+            <li>我好啊</li>
+            <li>努力学啊</li>
+            <li>加油干啊</li>
+        </ul>
+    </nav>
+    <div class="frame">
+        <div class="left">
+                左左左    左左fond的那事迥别第几啊史努比的那把司机你不嗲上半年fnadsoa的那事迥别第几啊史努比的那把司机你不嗲上半年nfaodinfioa的那事迥别fondsaoioa的那事迥别第几啊史努比的那把司机你不嗲上半年第几啊史努比的那把司机你不嗲上半年
+        </div>
+        <div class="center">
+           中中中中中中擞f那搜房你到家呢那搜房你到家呢那搜房你到家呢那搜房你到家呢那搜房你到家呢那搜房你到家呢那搜房你到家呢那搜房你到家呢那搜房你到家呢那搜房你到家呢那搜房你到家呢那搜房你到家呢那搜房你到家呢那搜房你到家呢asdf那搜房你到家呢a按哦单那搜房你到家呢哦按房价的弄饭多送的念佛安佛纳的搜房拿掉你发到is念佛安第斯of那抖擞in发的送佛爱欧迪芬你发到info简单搜房用的佛按哦佛纳抖擞if弄啊
+        </div>
+        <div class="right">
+                右右右右右打扫念念佛牛
+    </div>
+</body>
+
+</html>
+

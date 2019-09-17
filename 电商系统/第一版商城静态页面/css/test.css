@@ -1,0 +1,64 @@
+body , ul ,li{
+    margin: 0;
+    padding: 0;
+}
+body {
+    /* height: 2500px; */
+    font: 14px/1.5 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+}
+a {
+    text-decoration: none;
+}
+.test{
+    border: 1px solid black;
+    line-height: 40px;
+}
+.topbar {
+    /* border: 1px solid black; */
+    background-color: #333;
+    height: 40px;
+}
+.container {
+    /* border: 1px solid black; */
+    margin: 0 auto;
+    width: 1226px;
+}
+.container::before , .container::after,
+.clearfix::before, .clearfix::after {
+    content: "";
+    display: table;
+}
+.container::after, .clearfix::after {
+    clear: both;
+}
+
+.topbar a {
+    color: #b0b0b0;
+    font-size: 12px;
+}
+.topbar a:hover {
+    color: #fff;
+}
+.topbar-nav {
+    float: left;
+    height: 40px;
+    line-height: 40px;
+}
+
+
+/* header */
+.header {
+    height: 100px;
+}
+.header-logo {
+    float: left;
+    width: 62px;
+    margin-top: 22px;
+}
+.header-logo a {
+    display: block;
+    width: 55px;
+    height: 55px;
+    background: #ff6700 url(../img/mi-logo.png) no-repeat 50% 50%;
+}
+

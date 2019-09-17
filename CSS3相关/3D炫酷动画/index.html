@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3D炫酷动画</title>
+    <style>
+
+        /* 动画一*/
+        .box {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 200px auto;
+            transform-style: preserve-3d;   /* 保留图形的3d效果*/
+            transform: rotateX(-30deg);
+            animation: move 5s linear infinite;
+        }
+        .item{
+            position: absolute; /* ？？？为了方便调整旋转rotate，将需要旋转的元素定位在父框中*/
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            font-size: 30px;
+            color:#fff;
+            text-align: center;
+            opacity: 0.5;                  /* 透明度*/
+        }
+        .item:nth-child(1){
+            background: green;
+            transform: rotateY(60deg) translateZ(200px);
+        }
+        .item:nth-child(2){
+            background: peru;
+            transform: rotateY(120deg) translateZ(200px);
+        }
+        .item:nth-child(3){
+            background: pink;
+            transform: rotateY(180deg) translateZ(200px);
+        }
+        .item:nth-child(4){
+            background: palevioletred;
+            transform: rotateY(240deg) translateZ(200px);
+        }
+        .item:nth-child(5){
+            background: grey;
+            transform: rotateY(300deg) translateZ(200px);
+        }
+        .item:nth-child(6){
+            background: red;
+            transform: rotateY(360deg) translateZ(200px);
+        }
+        @keyframes move{
+            0%{ 
+                /* ！！！！想要通过绕轴旋转达到好的动画观看角度，需在动画中进行定义*/
+                /* 因为若在box样式中定义时，tranform属性值会被动画（move）中的覆盖*/
+                /* 旋转的先后顺序也有影响。需视图转动轴，在进行定义动画转动轴*/
+                transform: rotateX(-30deg) rotateY(0);  
+            }
+            100%{
+                transform: rotateX(-30deg) rotateY(360deg);
+            }
+        }
+
+        /* 动画二 */
+        .wrapper{         /* ！！！使其子元素都具有井深3D效果*/
+            perspective: 600px;
+        }
+        .box2{         /* 动画所作用的元素，此一个元素转动，就实现带动其所有子元素转动的效果*/
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 50px auto;
+            transform-style: preserve-3d;  /* 设置在父级上，保留子元素的3d空间*/
+            animation: move2 2s linear infinite;
+        }
+        .item2{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            font-size: 30px;
+            color:#fff;
+            text-align: center;
+            opacity: 0.5;                
+        }
+        .item2:nth-child(1){  /* 前面*/
+            background: green;
+            transform: translateZ(100px);
+        }
+        .item2:nth-child(2){  /* 上面*/
+            background: peru;
+            transform: rotateX(90deg) translateZ(100px);  /* 先后顺序很重要*/
+        }
+        .item2:nth-child(3){  /* 后面 */
+            background: pink;
+            transform: rotateX(180deg) translateZ(100px);
+        }
+        .item2:nth-child(4){  /* 下面*/
+            background: palevioletred;
+            transform: rotateX(-90deg) translateZ(100px);
+        }
+        .item2:nth-child(5){  /* 左面*/
+            background: grey;
+            transform: rotateY(-90deg) translateZ(100px);
+        }
+        .item2:nth-child(6){  /* 右面*/
+            background: red;
+            transform: rotateY(90deg) translateZ(100px);
+        }
+
+        @keyframes move2{
+            0%{ 
+                transform: rotateX(-30deg) rotate3d(-1,-1,1,0);  
+            }
+            100%{
+                transform: rotateX(-30deg) rotate3d(-1,-1,1,360deg);
+            }
+        }
+        /* @keyframes move2{     三轴乱动效果
+            0%{ 
+                transform: rotateX() rotateY() rotateZ();  
+            }
+            100%{
+                transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+            }
+        } */
+
+    </style>
+</head>
+    <div class="box">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+            <div class="item">6</div>
+    </div>
+
+    <div class="wrapper">
+        <div class="box2">
+                <div class="item2">1</div>
+                <div class="item2">2</div>
+                <div class="item2">3</div>
+                <div class="item2">4</div>
+                <div class="item2">5</div>
+                <div class="item2">6</div>
+        </div>
+    </div>  
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang ="zh">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>小米闪购 — 小米商城</title>
+        <link rel="shortcut icon" href="小米商城素材/favicon.ico" type="image/x-icon">  <!--  网页logo -->
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="矢量图标/font_1012064_7xm743oj20i/iconfont.css">
+    </head>
+
+    <body>
+        <!-- 一、顶部菜单栏 --> 
+        <div class="topbar">          
+            <div class="container">           <!-- 限制模块宽度、模块居中、还有浮动取消 -->
+                
+                <div class="topbar-nav">      <!-- 靠左 -->
+                    <a href="">小米商城</a><span>|</span>
+                    <a href="">MIUI</a><span>|</span>
+                    <a href="">IoT</a><span>|</span>
+                    <a href="">云服务</a><span>|</span>
+                    <a href="">金融</a><span>|</span>
+                    <a href="">有品</a><span>|</span>
+                    <a href="">小爱开放平台</a><span>|</span>
+                    <a href="">政企服务</a><span>|</span>
+                    <a href="">下载app</a><span>|</span>
+                    <a href="">Select Region</a><span>|</span>
+                </div>
+
+                <div class="topbar-cart"> 
+                    <a href="">  <i class="iconfont">&#xe73d;</i> 购物车<del>（0）</del></a>
+                </div> <!-- 靠右 -->
+ 
+                <div class="topbar-info clearfix">   <!-- 两个地址 后者仅用于与container一起清理浮动,节省代码量 -->
+                    <a href="">登录</a><span>|</span>
+                    <a href="">注册</a><span>|</span>
+                    <a href="" class="sep">消息通知</a>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 二、页头导航栏 --> 
+        <div class="header">             <!-- 二、页头导航栏控制页头导航栏的背景和高度 --> 
+            <div class="container">      <!-- 居中操作同上，所以用相同名字 -->
+                 
+                <div class="header-logo" >
+                    <a href="#"  class="lr"><img src="小米商城素材/img/小米图标.png"><span>小米官网</span></a>
+                </div>
+
+                <div class="header-nav">
+                        <ul class="nav-list clearfix">   <!-- 额外标签即可处理所有子元素中的浮动问题 --> 
+                            <li class="nav-category">
+                                <a href="">全部商品分类</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="">小米手机</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="">红米</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="">电视</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="">笔记本</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="">空调</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="">新品</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="">路由器</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="">智能硬件</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="">服务</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="">社区</a>
+                            </li>
+                        </ul>
+                </div>
+
+                <div class="header-search">
+                     <form action="" class="search-form">   <!-- 表单 -->
+                          <input type="search" name="keyword" class="search-text">
+                          <input type="submit" value="&#xe637;"  class="search-btn iconfont">  <!--class上要添加iconfont-->
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        
+
+          
+        <!-- 三、闪购商品信息主体 -->
+        <div class="seckill">
+
+            <!--  第一部分：顶部图片 -->
+            <div class="seckill-head"></div>   
+ 
+            <!--  第二部分：商品信息 -->
+            <div class="container">
+                                <!--  二.1：商品抢购时间切换栏 -->
+               <div id="seckillNav" class="seckill-nav">    <!--用于JS固定特效 -->
+                     <ul id="tabs" class="clearfix">
+                         <li class="active"> <em>18:00</em>  <span>  <em>即将开始<br>距开始 00:55:04</em>  </span>  </li>  <!--注意这是em内文字的换行 -->
+                         <li> <em>20:00</em>  <span>即将开始</span>  </li>
+                         <li> <em>22:00</em>  <span>即将开始</span>  </li>
+                         <li> <em>00:00</em>  <span>明日开始</span>  </li>
+                         <li> <em>08:00</em>  <span>明日开始</span>  </li>
+                     </ul>
+               </div>
+
+
+                                <!--  二.2：商品图片和具体信息 -->
+               <div id="lists" class="seckill-goods">
+                    <ul class="clearfix  active">                    <!--第一组商品信息列表   18:00-->
+                       <li>                <!--第一行第一个商品信息 -->
+                         <div class="bg gg"><img src="image/2.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->
+                         <div class="info">
+                             <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                             <p class="tips">大容量一个就够用</p>
+                             <p class="price">116元 <del>429元</del></p>
+                             <a href="" class="btn">登录后抢购</a>
+                             <p class="person">已有165人设置提醒</p>
+                         </div>
+                       </li>
+                       <li>                <!--第一行第二个商品信息 -->
+                         <div class="gg"><img src="image/2.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->
+                         <div class="info">
+                                <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                <p class="tips">大容量一个就够用</p>
+                                <p class="price">116元 <del>429元</del></p>
+                                <a href="" class="btn">登录后抢购</a>
+                                <p class="person">已有165人设置提醒</p>
+                         </div>
+                      </li>
+                      <li>                <!--第一行第三个商品信息 -->
+                        <div class="gg"><img src="image/2.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->
+                        <div class="info">
+                                <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                <p class="tips">大容量一个就够用</p>
+                                <p class="price">116元 <del>429元</del></p>
+                                <a href="" class="btn">登录后抢购</a>
+                                <p class="person">已有165人设置提醒</p>
+                        </div>
+                      </li>
+                      <li>                <!--第二行第一个商品信息 -->
+                        <div class="bg gg tg"><img src="image/2.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->
+                        <div class="info tg">
+                                <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                <p class="tips">大容量一个就够用</p>
+                                <p class="price">116元 <del>429元</del></p>
+                                <a href="" class="btn">登录后抢购</a>
+                                <p class="person">已有165人设置提醒</p>
+                        </div>
+                      </li>
+                      <li>                <!--第二行第二个商品信息 -->
+                        <div class="gg tg"><img src="image/2.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->
+                        <div class="info tg">
+                                <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                <p class="tips">大容量一个就够用</p>
+                                <p class="price">116元 <del>429元</del></p>
+                                <a href="" class="btn">登录后抢购</a>
+                                <p class="person">已有165人设置提醒</p>
+                        </div>
+                     </li>
+                     <li>                <!--第二行第三个商品信息 -->
+                       <div class="gg tg"><img src="image/2.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->
+                       <div class="info tg">
+                            <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                            <p class="tips">大容量一个就够用</p>
+                            <p class="price">116元 <del>429元</del></p>
+                            <a href="" class="btn">登录后抢购</a>
+                            <p class="person">已有165人设置提醒</p>
+                       </div>
+                     </li>
+                     <li>                <!--第三行第一个商品信息 -->
+                        <div class="bg gg tg"><img src="image/2.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->
+                        <div class="info tg">
+                                <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                <p class="tips">大容量一个就够用</p>
+                                <p class="price">116元 <del>429元</del></p>
+                                <a href="" class="btn">登录后抢购</a>
+                                <p class="person">已有165人设置提醒</p>  
+                        </div>
+                      </li>
+                      <li>                <!--第三行第二个商品信息 -->
+                        <div class="gg tg"><img src="image/2.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->
+                        <div class="info tg">
+                                <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                <p class="tips">大容量一个就够用</p>
+                                <p class="price">116元 <del>429元</del></p>
+                                <a href="" class="btn">登录后抢购</a>
+                                <p class="person">已有165人设置提醒</p>
+                        </div>
+                     </li>
+                     <li>                <!--第三行第三个商品信息 -->
+                       <div class="gg tg"><img src="image/2.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->
+                       <div class="info tg">
+                            <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                            <p class="tips">大容量一个就够用</p>
+                            <p class="price">116元 <del>429元</del></p>
+                            <a href="" class="btn">登录后抢购</a>
+                            <p class="person">已有165人设置提醒</p>>
+                       </div>
+                     </li>
+                    </ul>
+
+
+                    <ul class="clearfix">                            <!--第二组商品信息列表   20:00 -->
+                        <li>                <!--第一行第一个商品信息 -->
+                          <div class="bg gg"><img src="image/3.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                     
+                          <div class="info">
+                              <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                              <p class="tips">可爱、漂亮、善良、大方</p>
+                              <p class="price">1元 <del>999元</del></p>
+                              <a href="" class="btn"><span>登录后抢购</span></a>
+                              <p class="person">已有200000人想买</p>
+                          </div>
+                        </li>
+                        <li>                <!--第一行第二个商品信息 -->
+                            <div class="gg"><img src="image/3.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                     
+                            <div class="info">
+                                <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                <p class="tips">可爱、漂亮、善良、大方</p>
+                                <p class="price">1元 <del>999元</del></p>
+                                <a href="" class="btn">登录后抢购</a>
+                                <p class="person">已有200000人想买</p>
+                            </div>
+                        </li>
+                        <li>                <!--第一行第三个商品信息 -->
+                            <div class="gg"><img src="image/3.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                     
+                            <div class="info">
+                                <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                <p class="tips">可爱、漂亮、善良、大方</p>
+                                <p class="price">1元 <del>999元</del></p>
+                                <a href="" class="btn">登录后抢购</a>
+                                <p class="person">已有200000人想买</p>
+                            </div>
+                        </li>
+                        <li>                <!--第二行第一个商品信息 -->
+                            <div class="bg gg tg"><img src="image/3.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                     
+                            <div class="info tg">
+                                <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                <p class="tips">可爱、漂亮、善良、大方</p>
+                                <p class="price">1元 <del>999元</del></p>
+                                <a href="" class="btn"><span>登录后抢购</span></a>
+                                <p class="person">已有200000人想买</p>
+                            </div>
+                          </li>
+                          <li>                <!--第二行第二个商品信息 -->
+                              <div class="gg tg"><img src="image/3.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                     
+                              <div class="info tg">
+                                  <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                  <p class="tips">可爱、漂亮、善良、大方</p>
+                                  <p class="price">1元 <del>999元</del></p>
+                                  <a href="" class="btn">登录后抢购</a>
+                                  <p class="person">已有200000人想买</p>
+                              </div>
+                          </li>
+                          <li>                <!--第二行第三个商品信息 -->
+                              <div class="gg tg"><img src="image/3.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                     
+                              <div class="info tg">
+                                  <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                  <p class="tips">可爱、漂亮、善良、大方</p>
+                                  <p class="price">1元 <del>999元</del></p>
+                                  <a href="" class="btn">登录后抢购</a>
+                                  <p class="person">已有200000人想买</p>
+                              </div>
+                          </li>
+                          <li>                <!--第三行第一个商品信息 -->
+                            <div class="bg gg tg"><img src="image/3.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                     
+                            <div class="info tg">
+                                <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                <p class="tips">可爱、漂亮、善良、大方</p>
+                                <p class="price">1元 <del>999元</del></p>
+                                <a href="" class="btn"><span>登录后抢购</span></a>
+                                <p class="person">已有200000人想买</p>
+                            </div>
+                          </li>
+                          <li>                <!--第三行第二个商品信息 -->
+                              <div class="gg tg"><img src="image/3.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                     
+                              <div class="info tg">
+                                  <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                  <p class="tips">可爱、漂亮、善良、大方</p>
+                                  <p class="price">1元 <del>999元</del></p>
+                                  <a href="" class="btn">登录后抢购</a>
+                                  <p class="person">已有200000人想买</p>
+                              </div>
+                          </li>
+                          <li>                <!--第二行第三个商品信息 -->
+                              <div class="gg tg"><img src="image/3.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                     
+                              <div class="info tg">
+                                  <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                  <p class="tips">可爱、漂亮、善良、大方</p>
+                                  <p class="price">1元 <del>999元</del></p>
+                                  <a href="" class="btn">登录后抢购</a>
+                                  <p class="person">已有200000人想买</p>
+                              </div>
+                          </li>
+                    </ul>
+
+
+                    <ul class="clearfix">                            <!--第三组商品信息列表   22:00-->
+                        <li>                <!--第一行第一个列商品信息 -->
+                          <div class="bg gg"><img src="image/4.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                    
+                          <div class="info">
+                              <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                              <p class="tips">可爱、漂亮、善良、大方</p>
+                              <p class="price">1元 <del>999元</del></p>
+                              <a href="" class="btn">登录后抢购</a>
+                              <p class="person">已有200000人想买</p>
+                          </div>
+                        </li>
+                        <li>                <!--第一行第二个列商品信息 -->
+                            <div class="gg"><img src="image/4.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                    
+                            <div class="info">
+                                <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                <p class="tips">可爱、漂亮、善良、大方</p>
+                                <p class="price">1元 <del>999元</del></p>
+                                <a href="" class="btn">登录后抢购</a>
+                                <p class="person">已有200000人想买</p>
+                            </div>
+                        </li>
+                        <li>                <!--第一行第三个列商品信息 -->
+                            <div class="gg"><img src="image/4.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                    
+                            <div class="info">
+                                <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                <p class="tips">可爱、漂亮、善良、大方</p>
+                                <p class="price">1元 <del>999元</del></p>
+                                <a href="" class="btn">登录后抢购</a>
+                                <p class="person">已有200000人想买</p>
+                            </div>
+                        </li>
+                        <li>                <!--第二行第一个商品信息 -->
+                            <div class="bg gg tg"><img src="image/4.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                     
+                            <div class="info tg">
+                                <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                <p class="tips">可爱、漂亮、善良、大方</p>
+                                <p class="price">1元 <del>999元</del></p>
+                                <a href="" class="btn"><span>登录后抢购</span></a>
+                                <p class="person">已有200000人想买</p>
+                            </div>
+                          </li>
+                          <li>                <!--第二行第二个商品信息 -->
+                              <div class="gg tg"><img src="image/4.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                     
+                              <div class="info tg">
+                                  <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                  <p class="tips">可爱、漂亮、善良、大方</p>
+                                  <p class="price">1元 <del>999元</del></p>
+                                  <a href="" class="btn">登录后抢购</a>
+                                  <p class="person">已有200000人想买</p>
+                              </div>
+                          </li>
+                          <li>                <!--第二行第三个商品信息 -->
+                              <div class="gg tg"><img src="image/4.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                     
+                              <div class="info tg">
+                                  <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                  <p class="tips">可爱、漂亮、善良、大方</p>
+                                  <p class="price">1元 <del>999元</del></p>
+                                  <a href="" class="btn">登录后抢购</a>
+                                  <p class="person">已有200000人想买</p>
+                              </div>
+                          </li>
+                          <li>                <!--第三行第一个商品信息 -->
+                            <div class="bg gg tg"><img src="image/4.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                     
+                            <div class="info tg">
+                                <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                <p class="tips">可爱、漂亮、善良、大方</p>
+                                <p class="price">1元 <del>999元</del></p>
+                                <a href="" class="btn"><span>登录后抢购</span></a>
+                                <p class="person">已有200000人想买</p>
+                            </div>
+                          </li>
+                          <li>                <!--第三行第二个商品信息 -->
+                              <div class="gg tg"><img src="image/4.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                     
+                              <div class="info tg">
+                                  <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                  <p class="tips">可爱、漂亮、善良、大方</p>
+                                  <p class="price">1元 <del>999元</del></p>
+                                  <a href="" class="btn">登录后抢购</a>
+                                  <p class="person">已有200000人想买</p>
+                              </div>
+                          </li>
+                          <li>                <!--第三行第三个商品信息 -->
+                              <div class="gg tg"><img src="image/4.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                     
+                              <div class="info tg">
+                                  <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                  <p class="tips">可爱、漂亮、善良、大方</p>
+                                  <p class="price">1元 <del>999元</del></p>
+                                  <a href="" class="btn">登录后抢购</a>
+                                  <p class="person">已有200000人想买</p>
+                              </div>
+                          </li>
+                    </ul>
+  
+  
+                    <ul class="clearfix">                            <!--第四组商品信息列表   00:00-->
+                          <li>                <!--第一行第一个列商品信息 -->
+                            <div class="bg gg"><img src="image/5.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                    
+                            <div class="info">
+                                <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                <p class="tips">可爱、漂亮、善良、大方</p>
+                                <p class="price">1元 <del>999元</del></p>
+                                <a href="" class="btn">登录后抢购</a>
+                                <p class="person">已有200000人想买</p>
+                            </div>
+                          </li>
+                          <li>                <!--第一行第二个列商品信息 -->
+                              <div class="gg"><img src="image/5.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                    
+                              <div class="info">
+                                  <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                  <p class="tips">可爱、漂亮、善良、大方</p>
+                                  <p class="price">1元 <del>999元</del></p>
+                                  <a href="" class="btn">登录后抢购</a>
+                                  <p class="person">已有200000人想买</p>
+                              </div>
+                          </li>
+                          <li>                <!--第一行第三个列商品信息 -->
+                              <div class="gg"><img src="image/5.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                    
+                              <div class="info">
+                                  <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                  <p class="tips">可爱、漂亮、善良、大方</p>
+                                  <p class="price">1元 <del>999元</del></p>
+                                  <a href="" class="btn">登录后抢购</a>
+                                  <p class="person">已有200000人想买</p>
+                              </div>
+                          </li>
+                          <li>                <!--第二行第一个列商品信息 -->
+                            <div class="bg gg tg"><img src="image/5.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                    
+                            <div class="info tg">
+                                <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                <p class="tips">可爱、漂亮、善良、大方</p>
+                                <p class="price">1元 <del>999元</del></p>
+                                <a href="" class="btn">登录后抢购</a>
+                                <p class="person">已有200000人想买</p>
+                            </div>
+                          </li>
+                          <li>                <!--第二行第二个列商品信息 -->
+                              <div class="gg tg"><img src="image/5.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                    
+                              <div class="info tg">
+                                  <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                  <p class="tips">可爱、漂亮、善良、大方</p>
+                                  <p class="price">1元 <del>999元</del></p>
+                                  <a href="" class="btn">登录后抢购</a>
+                                  <p class="person">已有200000人想买</p>
+                              </div>
+                          </li>
+                          <li>                <!--第二行第三个列商品信息 -->
+                              <div class="gg tg"><img src="image/5.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                    
+                              <div class="info tg">
+                                  <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                  <p class="tips">可爱、漂亮、善良、大方</p>         
+                                  <p class="price">1元 <del>999元</del></p>
+                                  <a href="" class="btn">登录后抢购</a>
+                                  <p class="person">已有200000人想买</p>
+                              </div>
+                          </li>
+                          <li>                <!--第三行第一个列商品信息 -->                                               
+                            <div class="bg gg tg"><img src="image/5.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                    
+                            <div class="info tg">
+                                <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                <p class="tips">可爱、漂亮、善良、大方</p>
+                                <p class="price">1元 <del>999元</del></p>
+                                <a href="" class="btn">登录后抢购</a>
+                                <p class="person">已有200000人想买</p>
+                            </div>
+                          </li>
+                          <li>                <!--第三行第二个列商品信息 -->
+                              <div class="gg tg"><img src="image/5.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                    
+                              <div class="info tg">
+                                  <a href="" class="name">小米移动电源2C 20000毫安大容量 </a>
+                                  <p class="tips">可爱、漂亮、善良、大方</p>
+                                  <p class="price">1元 <del>999元</del></p>
+                                  <a href="" class="btn">登录后抢购</a>
+                                  <p class="person">已有200000人想买</p> 
+                              </div>
+                          </li>
+                          <li>                <!--第三行第三个列商品信息 -->
+                              <div class="gg tg"><img src="image/5.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                    
+                              <div class="info tg">
+                                  <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                  <p class="tips">可爱、漂亮、善良、大方</p>
+                                  <p class="price">1元 <del>999元</del></p>
+                                  <a href="" class="btn">登录后抢购</a>
+                                  <p class="person">已有200000人想买</p>
+                              </div>
+                          </li>
+                    </ul>
+                     
+
+                    <ul class="clearfix">                            <!--第五组商品信息列表   08:00 -->
+                        <li>                <!--第一行第一个列商品信息 -->
+                            <div class="bg gg"><img src="image/4.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                    
+                            <div class="info">
+                                <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                <p class="tips">可爱、漂亮、善良、大方</p>
+                                <p class="price">1元 <del>999元</del></p>
+                                <a href="" class="btn">登录后抢购</a>
+                                <p class="person">已有200000人想买</p>
+                            </div>
+                          </li>
+                          <li>                <!--第一行第二个列商品信息 -->
+                              <div class="gg"><img src="image/4.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                    
+                              <div class="info">
+                                  <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                  <p class="tips">可爱、漂亮、善良、大方</p>
+                                  <p class="price">1元 <del>999元</del></p>
+                                  <a href="" class="btn">登录后抢购</a>
+                                  <p class="person">已有200000人想买</p>
+                              </div>
+                          </li>
+                          <li>                <!--第一行第三个列商品信息 -->
+                              <div class="gg"><img src="image/4.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                    
+                              <div class="info">
+                                  <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                  <p class="tips">可爱、漂亮、善良、大方</p>
+                                  <p class="price">1元 <del>999元</del></p>
+                                  <a href="" class="btn">登录后抢购</a>
+                                  <p class="person">已有200000人想买</p>
+                              </div>
+                          </li>
+                          <li>                <!--第二行第一个列商品信息 -->
+                            <div class="bg gg tg"><img src="image/4.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                    
+                            <div class="info tg">
+                                <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                <p class="tips">可爱、漂亮、善良、大方</p>
+                                <p class="price">1元 <del>999元</del></p>
+                                <a href="" class="btn">登录后抢购</a>
+                                <p class="person">已有200000人想买</p>
+                            </div>
+                          </li>
+                          <li>                <!--第二行第二个列商品信息 -->
+                              <div class="gg tg"><img src="image/4.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                    
+                              <div class="info tg">
+                                  <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                  <p class="tips">可爱、漂亮、善良、大方</p>
+                                  <p class="price">1元 <del>999元</del></p>
+                                  <a href="" class="btn">登录后抢购</a>
+                                  <p class="person">已有200000人想买</p>
+                              </div>
+                          </li>
+                          <li>                <!--第二行第三个列商品信息 -->
+                              <div class="gg tg"><img src="image/4.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                    
+                              <div class="info tg">
+                                  <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                  <p class="tips">可爱、漂亮、善良、大方</p>
+                                  <p class="price">1元 <del>999元</del></p>
+                                  <a href="" class="btn">登录后抢购</a>
+                                  <p class="person">已有200000人想买</p>
+                              </div>
+                          </li>
+                          <li>                <!--第三行第一个列商品信息 -->
+                            <div class="bg gg tg"><img src="image/4.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                    
+                            <div class="info tg">
+                                <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                <p class="tips">可爱、漂亮、善良、大方</p>
+                                <p class="price">1元 <del>999元</del></p>
+                                <a href="" class="btn">登录后抢购</a>
+                                <p class="person">已有200000人想买</p>
+                            </div>
+                          </li>
+                          <li>                <!--第三行第二个列商品信息 -->
+                              <div class="gg tg"><img src="image/4.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                    
+                              <div class="info tg">
+                                  <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                  <p class="tips">可爱、漂亮、善良、大方</p>
+                                  <p class="price">1元 <del>999元</del></p>
+                                  <a href="" class="btn">登录后抢购</a>
+                                  <p class="person">已有200000人想买</p>
+                              </div>
+                          </li>
+                          <li>                <!--第三行第三个列商品信息 -->
+                              <div class="gg tg"><img src="image/4.jpg"></div>    <!--注意这是HTML文档，是最顶层的，找图片不需返回上一层 -->                    
+                              <div class="info tg">
+                                  <a href="" class="name">小米移动电源2C 20000毫安大容量</a>
+                                  <p class="tips">可爱、漂亮、善良、大方</p>
+                                  <p class="price">1元 <del>999元</del></p>
+                                  <a href="" class="btn">登录后抢购</a>
+                                  <p class="person">已有200000人想买</p>
+                              </div>
+                          </li>
+                    </ul>
+
+               </div>
+            </div>    <!--div class="container" -->
+
+            <!--  第三部分： 闪购主体底部文本信息 -->
+            <div class="seckill-notice">
+                    <p>*小米秒杀活动规则:</p>
+                    <p>1.秒杀商品是否参加活动，以订单结算页显示为准，活动包括但不限于优惠券、赠品、满减、满赠等;</p>
+                    <p>2.秒杀商品数量有限，活动以下单支付成功为准，请加入购物车后尽快下单支付；</p>
+                    <p>3.秒杀价不含运费，最终以订单结算页价格为准。</p>
+                    <p>温馨提示：因可能存在系统缓存、页面更新导致价格变动异常等不确定性情况出现，如您发现活动商品标价或促销信息有异常，请您立即联系小米客服，以便我们及时补正。</p>
+            </div>
+            
+        </div>
+        
+         <!-- 四、底部文本 -->
+        <div class="bottom">
+            <div class="container">
+               
+                <div class="bottom-1">
+                   <a href=""> <i class="iconfont">&#xeb65;</i> 预约维修服务</a><span>|</span>
+                   <a href=""> <i class="iconfont">&#xeb63;</i> 七天无理由退货</a><span>|</span>
+                   <a href=""> <i class="iconfont">&#xe697;</i> 15天免费换货</a><span>|</span>
+                   <a href=""> <i class="iconfont">&#xe69e;</i> 满150元包邮</a><span>|</span>
+                   <a href=""> <i class="iconfont">&#xeb64;</i> 520余家售后网点</a>
+                </div>
+
+                <div class="bottom-2">
+                 <ul class="bottmo-20 clearfix">
+                    <li class="top">
+                        <a href="">帮助中心</a>
+                    </li>
+                    <li class="normal">
+                        <a href="">账户管理</a>
+                    </li>
+                    <li class="normal">
+                        <a href="">购物指南</a>
+                    </li>
+                    <li class="normal">
+                        <a href="">订单操作</a>
+                    </li>
+                 </ul>
+                 <ul class="bottmo-20 clearfix">
+                    <li class="top">
+                        <a href="">服务支持</a>
+                    </li>
+                    <li class="normal">
+                        <a href="">售后政策</a>
+                    </li>
+                    <li class="normal">
+                        <a href="">自助服务</a>
+                    </li>
+                    <li class="normal">
+                        <a href="">相关下载</a>
+                    </li>
+                 </ul>
+                 <ul class="bottmo-20 clearfix">
+                    <li class="top">
+                        <a href="">线下门店</a>
+                    </li>
+                    <li class="normal">
+                        <a href="">小米之家</a>
+                    </li>
+                    <li class="normal">
+                        <a href="">服务网点</a>
+                    </li>
+                    <li class="normal">
+                        <a href="">授权体验店</a>
+                    </li>
+                 </ul>
+                 <ul class="bottmo-20 clearfix">
+                    <li class="top">
+                        <a href="">关于小米</a>
+                    </li>
+                    <li class="normal">
+                        <a href="">了解小米</a>
+                    </li>
+                    <li class="normal">
+                        <a href="">加入小米</a>
+                    </li>
+                    <li class="normal">
+                        <a href="">投资者关系</a>
+                    </li>
+                 </ul>
+                 <ul class="bottmo-20 clearfix">
+                    <li class="top">
+                        <a href="">关注我们</a>
+                    </li>
+                    <li class="normal">
+                        <a href="">新浪微博</a>
+                    </li>
+                    <li class="normal">
+                        <a href="">官方微信</a>
+                    </li>
+                    <li class="normal">
+                        <a href="">联系我们</a>
+                    </li>
+                 </ul>
+                 <ul class="bottmo-20 clearfix">
+                    <li class="top">
+                        <a href="">特色服务</a>
+                    </li>
+                    <li class="normal">
+                        <a href="">F 码通道</a>
+                    </li>
+                    <li class="normal">
+                        <a href="">礼物码</a>
+                    </li>
+                    <li class="normal">
+                        <a href="">防伪查询</a>
+                    </li>
+                 </ul>
+                </div>
+                
+                <div class="bottom-3">
+                    <p class="bottom-30">400-100-5678</a>
+                    <p class="bottom-31">周一至周日 8:00-18:00</p>
+                    <p class="bottom-32">（仅收<del>市话费</del>）</p>
+                    <a href="" class="bottom-btn"> <i class="iconfont">&#xe69c;</i> 联系客服 </a>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+
+    <script src="js/index.js"></script>    <!--迎合从上到下的执行顺序 -->
+    </body>
+</html>
+
+
+
+

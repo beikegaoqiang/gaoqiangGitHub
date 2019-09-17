@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>自动切换焦点图——拓展</title>
+    
+    <style>
+        .kuang{
+            position: relative;
+        }
+        #left{
+            width: 140px;
+            float: left;
+        }
+        #left img{
+            width: 140px;
+        }
+        #right{
+            width: 440px;
+            float: left;
+            margin-left: 10px; 
+        }
+        #right img{
+            display: none;
+            width: 440px;
+        }
+        #right .show{
+            display: block;
+        }
+        .clearfix::after{
+            content: "";
+            display: table;
+            clear: both;
+        }
+        #pointer{
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin-top: 4px;
+        }
+      
+    </style>
+
+</head>
+<body>
+    <div class="kuang clearfix">
+        <div id="left">
+            <img src="tab切换焦点图效果/1.jpg" alt="">
+            <img src="tab切换焦点图效果/2.jpg" alt="">
+            <img src="tab切换焦点图效果/3.jpg" alt="">
+        </div>
+        <img src="tab切换焦点图效果/pointer.png" alt="" id="pointer">
+        <div id="right">
+            <img src="tab切换焦点图效果/1.jpg" alt="" class="show">
+            <img src="tab切换焦点图效果/2.jpg" alt="">
+            <img src="tab切换焦点图效果/3.jpg" alt="">
+        </div>
+    </div>
+    
+    <script>
+        var left = document.getElementById("left").getElementsByTagName("img");
+        var right = document.getElementById("right").getElementsByTagName("img");
+        var pointer = document.getElementById("pointer")
+        var TopAry = [0,82,164];    // 事先定义好pointer框的三个目标位置
+
+        for(var i = 0; i < left.length; i++){
+            left[i].onmouseover = mouseOver;
+            left[i].onmouseover = mousedefer;   // 鼠标移动时也触发延时自动播放函数，只不过符合函数条件后才有执行效果
+            left[i].index = i;
+        }
+        
+        //  1. 还未与mouseOver函数进行连接  2.仅实现移动一步
+        function mousedefer(){
+            for(var i = 0; i < left.length; i++){
+                if(this.index == i){
+            
+                    nowTop = TopAry[i];    // 需要捕捉pointer框当前的停留位置
+                
+                    // i为 0或者1
+                    if(i < left.length - 1){
+                        Top = TopAry[i + 1];   // 目标移动位置(上升)
+
+                        if(moveTop == null){ 
+                          moveTop = setInterval(mousePointer, 30);                 
+                        }
+                        nowTop = TopAry[i + 1];
+                    }
+                    // i为 2
+                    else if(i == left.lenght - 1){
+                       Top = TopAry[i - 1];    // 目标移动位置(下降)
+
+                       if(moveTop == null){ 
+                          moveTop = setInterval(mousePointer, 30);                 
+                        }
+                        nowTop = TopAry[i - 1];
+                    }
+
+
+                }
+            }
+        }
+        
+
+
+
+        function mouseOver(){      // 给左侧图片组绑定鼠标移动事件，控制右侧图片的显示
+            console.log(this.index)
+            for(var i = 0; i < left.length; i++){
+                if(this.index == i){
+                    // 右侧图片显示
+                    right[i].className = "show";
+                    
+                    // pointer图片移动  
+                    Top = TopAry[i];    // ！！！！！前面不能加var。如果加了，就成了mouseOver函数的成员变量，就不能被mousePointer函数使用
+                    // Top 为鼠标移动的图像位置，即需移动到的目标点
+                   
+                    if(moveTop == null){  // 问题1：？？？作用：如果定时器线程已经启动了，就不用开启，避免同时启用多个线程。
+    // ？？？加了此null判断后，应该是定时器控制pointer框移动还没达到指定位置时，定时器不会关闭，即moveTop不会为null，所以pointer在移动中时，不会再激发新的计时器带动窗口进行不同于之前的移动操作。
+    // 答：TOP、和nowTop放在if语句之外。因为在移动过程中，移动鼠标激发了新的事件再次调用mouseOver函数，使Top和nowTop的值发生改变，所以定时器继续调用的mousePointer函数时就会进行与之前不同的if下的移动操作
+    //    即在pointer还没移到指定位置，又移动鼠标更新目标时，不是又开了一个新的定时器！！！，而是将当前的定时器内调用的函数执行操作语句内容进行了IF判断后的更改
+                       
+                    moveTop = setInterval(mousePointer, 30); // ！！！串起pointer图片移动与左侧图片鼠标移动事件
+                                          // 问题2：？？?为何此处不能加 var（加了以后仅第一次移动有效）
+                    }
+                }else{
+                    right[i].className = "";
+                }
+            }
+        }
+        
+        // 问题3：？？？为何moveTop不能像其他变量一样在函数mouseOver内不带var定义，为何定时器一定要在外界完成定义。（定时器定义与变量定义不同，即没有全局和局部之分）
+        // 好像也有全局和局部之分，只不过此处没有合适的语句在函数体内实现全局定义，验证不了。
+        var moveTop;  
+        var nowTop = pointer.offsetTop; // ！！！获取到图片相对于父级所处的位置(此处为Top)。 此处为初定义，作用为获取到一开始时pointer框的位置，nowTop的值在触发mousePointer函数开始移动时
+        var speed = 4;  //   就在不断实时的被改变着。 （此处可写成: var nowTop = 0  效果不变）
+        
+        // Pointer图片移动函数
+        function mousePointer(){ 
+           console.log("通过定时器调用了一次pointer图片移动函数")
+           if(nowTop < Top){      // 逻辑处理 1：当pointer框在鼠标移动事件触发框的上面时，从上往下移动
+              nowTop += speed;
+              if(nowTop >= Top){
+                    nowTop = Top;
+                    clearInterval(moveTop);
+                    
+                    console.log("定时器取消1")
+                    moveTop = null;
+              }
+           }
+           
+           if(nowTop > Top){      // 逻辑处理 2：当pointer框在鼠标移动事件触发框的下面时，从下往上移动
+              nowTop -= speed;
+              if(nowTop <= Top){
+                    nowTop = Top;
+                    clearInterval(moveTop);
+                    
+                    console.log("定时器取消2")
+                    moveTop = null;
+              }
+           }
+           
+           if(nowTop == Top){     // 逻辑处理 3：当pointer框与鼠标移动事件触发框重合时，不移动
+              clearInterval(moveTop);
+              
+              console.log("定时器取消3")
+              moveTop = null;
+           }
+           pointer.style.top = nowTop + "px";
+        }
+       
+    </script>
+</body>
+</html>

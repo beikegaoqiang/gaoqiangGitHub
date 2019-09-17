@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>弹性盒子布局</title>
+    <style>
+    .box{
+        width: 200px;
+        /* height: 100px; */
+        background: #fff;
+        border: 1px solid black;
+        /* position: absolute; */
+        /* 已知宽高 方法1：*/
+        /* top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        margin: auto; */
+
+        /* 已经宽高 方法2: */
+        /* top: 50%;
+        left: 50%;
+        margin-left: -100px;
+        margin-top: -50px;  */
+
+        /* 未知宽高（宽高灵活动态变化） 方法1：tranform */
+        /* top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);  */
+    }
+
+        /* 未知宽高（宽高灵活动态变化） 方法2：flex弹性盒子 */
+    body{
+        position: absolute;   /* 使得body大小充满整个屏幕*/
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0; 
+        
+        display: flex;
+        background: #ccc;
+        justify-content: center;
+        align-content: center;
+        
+        margin: 0;   /* 初始化body的边界为0*/
+    } 
+    </style>
+</head>
+<body>
+    <div class="box">
+        fbnadsjfbnajsdnfoaisdbn电脑上你倒是你懂啊 你的哦啊啥你都阿你倒是你懂啊 你的哦啊你倒是你懂啊 你的哦啊你倒是你懂啊 你的哦啊森纳对哦三部分白农夫大三大四多大沙发沙发上三佛纳搜房闹别扭  少妇不孬三部分拿上半年
+    </div>
+    
+</body>
+</html>

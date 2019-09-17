@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>刮刮卡</title>
+
+    <style>
+        canvas {
+            display: block;
+            /* width: 200px;
+            height: 200px;    如果设置200*200 擦除画圆有偏差*/
+            margin: 0 auto;
+            /* 将canvas标签由行内块元素变成块元素，maigin:0 auto 居中就有效*/
+            margin-top: 100px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+
+<body>
+    <canvas id="myCanvas" width="400" height="400"></canvas>
+
+    <script>
+        var myCanvas = document.getElementById("myCanvas");
+        var ctx = myCanvas.getContext("2d");
+
+        var h = myCanvas.width;  // 取的是canvas元素行内width（分度尺总长）
+        var w = myCanvas.height; // myCanvas.offsetwidth取的是canvas元素实际宽度(此处为350px)
+        var firstPoint = {};  // 建立一个对象用于存Lineto的第一个点，move和down函数中都使用了这个对象，需全局定义
+
+
+        function init() {
+            var img = new Image();
+            var random = Math.random();
+            if (random < 0.5) {
+                img.src = "20.jpg";  // 图片的src改变时会触发图片的onload时间
+            } else {
+                img.src = "21.jpg";
+            }
+            img.onload = function () {
+                myCanvas.style.backgroundImage = "url(" + img.src + ")";
+            }
+
+            ctx.fillStyle = "#aaa";  // 灰色填充色
+            ctx.fillRect(0, 0, w, h);
+
+            myCanvas.addEventListener("mousedown", Down);   // 在页面刷新时绑定鼠标按下事件
+        }
+        init();
+
+        function Down(e) {
+            firstPoint.x = e.clientX - myCanvas.offsetLeft;
+            firstPoint.y = e.clientY - myCanvas.offsetTop;
+
+            myCanvas.addEventListener("mousemove", Move);   // 在鼠标按下函数内绑定鼠标移动事件
+            document.body.addEventListener("mouseup", Up);  // 在鼠标按下函数内绑定鼠标抬起事件
+
+            ctx.globalCompositeOperation = "destination-out";
+            ctx.beginPath();
+            ctx.arc(firstPoint.x, firstPoint.y, 20, 0, Math.PI * 2);
+            ctx.fill();     // 不设填充样式fillstyle时，默认fill()为透明色
+        }
+
+        function Move(e) {
+            var x = e.clientX - myCanvas.offsetLeft;
+            var y = e.clientY - myCanvas.offsetTop;
+
+            ctx.beginPath();
+            ctx.moveTo(firstPoint.x, firstPoint.y);
+            ctx.lineTo(x, y);
+            ctx.lineWidth = 40;
+            ctx.lineCap = "round";
+            ctx.stroke();   // 描边渲染
+
+            firstPoint.x = x;  // 把移动出的新点赋给下一个移动事件，作为下一个移动事件的起始点，实现动态刷新
+            firstPoint.y = y;
+        }
+
+        function Up() {
+
+            myCanvas.removeEventListener("mousemove", Move);
+            document.body.removeEventListener("mouseup", Up);  // 鼠标抬起事件函数中把自己的鼠标抬起事件取消绑掉
+    
+            // ctx.beginPath();        因为有断点连接效果，所以不需要鼠标抬起画图了
+            // ctx.arc(x, y, 20, 0, Math.PI * 2);
+            // ctx.fill();  // 不设填充样式fillstyle时，默认fill()为透明色
+
+            // 功能：抬起时判断已刮区域是否超过70%，超出时直接消除全部灰色蒙层(通过判断像素点是否为透明)
+            clearCanvas();
+
+        }
+        
+        function clearCanvas() {
+            var sum = 0;  // 每执行一次clearCanvas判断一次Canvas画布当前像素点为0的sum数量。4个为一组成组判断。
+            // 每一个像素点有rgba四个值，只要其中一个为0，则就可判断其被擦掉了，因擦掉是用通明色fill的，4个值全为0。
+            var imgData = ctx.getImageData(0, 0, w, h);  // ctx.getImageData是个对象,imgData.data是个数组(数量=400*400*4)
+            for (var i = 0; i < imgData.data.length; i += 4) {
+                if (imgData.data[i] == 0) {
+                    sum++;
+                }
+            }
+            if (sum > w * h * 0.6) {
+                ctx.clearRect(0, 0, w, h);
+            }
+        }
+
+    </script>
+</body>
+
+</html>

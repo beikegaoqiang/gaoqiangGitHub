@@ -1,0 +1,137 @@
+
+/*    初始化   */
+body,ul,li{             
+    margin: 0;
+    padding: 0;
+}
+body{ 
+    height:2500px;      /* 滚动条*/
+    font:14px/1.5 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+}
+a{                      /* a链接初始化：去掉下划线 */
+    text-decoration: none;          
+}
+ul{
+    list-style-type: none;  /* ！！！！取消列表前的点(此操作如果遗漏,li就不会浮动)*/
+}
+
+ .clearfixed::before,.clearfixed::after  
+{
+    content: "";                     /* ！！！！加内容使margin不重叠*/
+    display: table;                  /* ！！！！伪元素清理浮动 1 */
+}
+.clearfixed::after{
+    clear: both;                     /* ！！！！伪元素清理浮动 2 */
+}
+/* ！！如果不清理浮动，外框就包裹不了内部的浮动子元素，相当于没有这些子元素（撑不起来）*/
+/* ！！！！为什么在ul上添加浮动取消标签(clearfixed)？:浮动体是li（a），为了实现清理浮动，在li列表的最后添加了内容（也就是ul伪元素after）,对此内容定义浮动取消命令 */
+
+
+/* 菜单模块初始化 */
+.container{  
+    margin: 0 auto;   /* 限制.container的上下边距（内边距）为0 左右居中 */
+    width: 1226px;    
+    background-color: #333333; 
+}
+
+/*  一级菜单  */
+.caidan{
+    /* background-color: #333333;   ！！当背景色被设置在ul标签内的时候，明显发现下面有一定的距离，推测跟伪元素添加了空字符（content: "";）有关 */
+    height: 62px;       /* ！！！去掉此行，可实现让内容（li a）自动充满高度 */
+    line-height: 60px;  /*！！！高度与超链接a(需要居中的文本)高度(height)一致*/
+    font-size: 20px;
+    padding-left: 32px;
+    position: relative;
+}
+ .caidan > li{
+    float: left;   /*！！！若浮动设置在了下面的a标签中，则二级菜单会*/
+} 
+.caidan > li > a{     /*  > ：只对nav-list下一级的li子元素进行设定，即只对儿子有效，对孙子无效  */
+    
+    display: block;   /* 以下两行在视频中是对li设置的*/
+    padding: 0 20px;
+
+    height: 60px;
+    /* width: 100px;  ！！！此处取消设置宽度,是为了方便二级菜单撑开 */ 
+    color: red;
+    text-align: center;  /*！！！文本居中是center*/
+    /* vertical-align: middle;  行内元素的基线相对于所在行的基线的垂直对齐，此处为放置在父元素中部*/
+    border: 2px solid #333333;
+    border-bottom: none;
+
+    position: relative;  /*！！！！因为a超链接也需要设置index层级关系，所以才加入relative*/
+    z-index: 9;
+}
+.caidan > li > a:hover{
+    background-color:#fff;
+    color: red;
+    border: 2px solid #0ec253;  /*！！鼠标移动到时有边框显示效果。为了不使鼠标移动时多出来的2px边框线宽产生抖动效果。在上面的a选择器中加入同样像素的边框（颜色设置成与背景颜色一样即可）*/
+    border-bottom: none;
+}
+
+/*  二级菜单  */
+.item{
+    display: none;      /* 隐藏掉，跟事件触发有关*/
+    width: 200px;
+    border: 2px solid #0ec253;
+
+    position: absolute;  /*！！！absolute脱离文档流，相当于整个页面定位*/
+    top: 62px;
+    z-index: 1;
+}
+.item-list{
+    background-color: #fff;
+    padding: 2px 0 10px 12px;
+}
+.item-list > li{
+    height: 40px;
+    line-height: 40px;
+}
+.item-list > li > a{
+    color: #6e6e6e;
+}
+.item-list > li > a:hover{
+    text-decoration: underline;
+}
+
+
+/*与JS控制有关的*/
+.caidan .show .item{  /* ！！！！跟事件触发有关    优先级比.item大*/
+    display: block;  /* 通过鼠标移动事件给li添加class属性名(show)来达到激活此选择器，执行此CSS代码的作用*/
+}
+
+      /*没有二级菜单的a在鼠标移动事件触发时候的控制*/
+.caidan > .show > a{   /* 优先级比.caidan > li > a大 ！！！（且仅对.show下的a标签一级子元素有效。此强制限定避免了触及二级li（关于蝉壳123）的触发事件误操作）*/
+    background-color:#fff;
+    color: red;
+    border: 2px solid #0ec253;  /*！！鼠标移动到时有边框显示效果。为了不使鼠标移动时多出来的2px边框线宽产生抖动效果。在上面的a选择器中加入同样像素的边框（颜色设置成与背景颜色一样即可）*/
+    border-bottom: none;
+}
+
+      /*有二级菜单的a在鼠标移动事件触发时候的控制*/
+.caidan > .show > .have{   /* 优先级比.caidan > li > a大 ！！！（且仅对.show下的a标签一级子元素有效。此强制限定避免了触及二级li（关于蝉壳123）的触发事件误操作）*/
+    height: 62px;   /*！！！！ 解决了下一个a标签的边界干扰问题*/
+}
+
+
+/* 多行排列代码 “人才招聘” */
+.caidan .big .item{  /* ！！！！跟事件触发有关    优先级比.item大*/
+    display: block;  /* 通过鼠标移动事件给li添加class属性名(show)来达到激活此选择器，执行此CSS代码的作用*/
+    width: 280px; 
+}
+.caidan .big .item li{
+    float: left;
+    margin-right: 20px;
+}
+
+      /*没有二级菜单的a在鼠标移动事件触发时候的控制*/
+.caidan > .big > a{   /* 优先级比.caidan > li > a大 ！！！（且仅对.show下的a标签一级子元素有效。此强制限定避免了触及二级li（关于蝉壳123）的触发事件误操作）*/
+    background-color:#fff;
+    color: red;
+    border: 2px solid #0ec253;  /*！！鼠标移动到时有边框显示效果。为了不使鼠标移动时多出来的2px边框线宽产生抖动效果。在上面的a选择器中加入同样像素的边框（颜色设置成与背景颜色一样即可）*/
+    border-bottom: none;
+}
+      /*有二级菜单的a在鼠标移动事件触发时候的控制*/
+.caidan > .big > .have{   /* 优先级比.caidan > li > a大 ！！！（且仅对.show下的a标签一级子元素有效。此强制限定避免了触及二级li（关于蝉壳123）的触发事件误操作）*/
+    height: 62px;   /*！！！！ 解决了下一个a标签的边界干扰问题*/
+}

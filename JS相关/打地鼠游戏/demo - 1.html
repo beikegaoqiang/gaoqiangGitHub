@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>打地鼠游戏（类和对象：封装锤子和老鼠）</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #scene {
+            height: 550px;
+            width: 750px;
+            background: url("打地鼠/bg.png");
+        }
+
+        #hollow1,
+        #hollow2,
+        #hollow3,
+        #hollow4,
+        #hollow5,
+        #hollow6,
+        #hollow7,
+        #hollow8,
+        #hollow9 {
+            height: 103px;
+            width: 102px;
+            /* border: 1px solid black;        加边框是为了一开始方便设定各hollo框的位置*/
+            overflow: hidden;
+            /* 内容如果溢出，隐藏*/
+        }
+
+        #hollow1 {
+            position: absolute;
+            top: 165px;
+            left: 140px;
+        }
+
+        #hollow2 {
+            position: absolute;
+            top: 165px;
+            left: 330px;
+        }
+
+        #hollow3 {
+            position: absolute;
+            top: 169px;
+            left: 528px;
+        }
+
+        #hollow4 {
+            position: absolute;
+            top: 253px;
+            left: 117px;
+        }
+
+        #hollow5 {
+            position: absolute;
+            top: 257px;
+            left: 334px;
+        }
+
+        #hollow6 {
+            position: absolute;
+            top: 252px;
+            left: 531px;
+        }
+
+        #hollow7 {
+            position: absolute;
+            top: 349px;
+            left: 109px;
+        }
+
+        #hollow8 {
+            position: absolute;
+            top: 355px;
+            left: 334px;
+        }
+
+        #hollow9 {
+            position: absolute;
+            top: 353px;
+            left: 550px;
+        }
+
+        #mouse1,
+        #mouse2,
+        #mouse3,
+        #mouse4,
+        #mouse5,
+        #mouse6,
+        #mouse7,
+        #mouse8,
+        #mouse9 {
+            position: absolute;
+            top: 104px;
+            margin: auto;
+        }
+
+        #hammer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin-top: -35px;
+            /* 边界值调整，使得鼠标位置在图片的中间 */
+            margin-left: -35px;
+            cursor: none;
+            /* 取消鼠标箭头显示*/
+            user-select: none;
+            /* 取消选中图片效果*/
+            z-index: 999;
+            /* 使锤子在最上层（数字越大越在上面）*/
+        }
+
+        #control {
+            color: #ff6700;
+            font-size: 25px;
+            position: absolute;
+            top: 40px;
+            left: 610px;
+            line-height: 50px;
+            text-align: center;
+        }
+
+        #start {
+            float: right;
+            height: 50px;
+            width: 80px;
+            border: 5px solid rgb(204, 24, 63);
+            margin-right: 20px;
+            cursor: pointer;
+        }
+
+        #end {
+            float: right;
+            height: 50px;
+            width: 80px;
+            border: 5px solid black;
+            cursor: pointer;
+        }
+
+        #start:hover,
+        #end:hover {
+            color: blue;
+            border: 5px solid rgb(19, 226, 36);
+            background-color: red;
+        }
+
+        #score {
+            height: 20px;
+            width: 100px;
+            position: absolute;
+            top: 195px;
+            left: 230px;
+        }
+
+        .display {
+            border: 5px solid rgb(177, 54, 54);
+            background: rgb(218, 200, 46);
+            color: rgb(8, 78, 105);
+            font-size: 20px;
+            line-height: 100px;
+            text-align: center;
+            height: 100px;
+            width: 350px;
+            position: absolute;
+            top: 250px;
+            left: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="scene"><img src="打地鼠/hammer1.png" alt="" id="hammer"></div>
+
+    <div id="hollow1"><img src="打地鼠/mouse1.png" alt="" id="mouse1"></div>
+    <div id="hollow2"><img src="打地鼠/mouse1.png" alt="" id="mouse2"></div>
+    <div id="hollow3"><img src="打地鼠/mouse1.png" alt="" id="mouse3"></div>
+    <div id="hollow4"><img src="打地鼠/mouse1.png" alt="" id="mouse4"></div>
+    <div id="hollow5"><img src="打地鼠/mouse1.png" alt="" id="mouse5"></div>
+    <div id="hollow6"><img src="打地鼠/mouse1.png" alt="" id="mouse6"></div>
+    <div id="hollow7"><img src="打地鼠/mouse1.png" alt="" id="mouse7"></div>
+    <div id="hollow8"><img src="打地鼠/mouse1.png" alt="" id="mouse8"></div>
+    <div id="hollow9"><img src="打地鼠/mouse1.png" alt="" id="mouse9"></div>
+
+    <div id="control">
+        <div id="end">结束</div>
+        <div id="start">开始</div>
+    </div>
+
+    <div id="score">0</div>
+
+    <div id="kuang"></div>
+    </div>
+
+    <!-- 引入外部js文件 -->
+    <script src="Hammer.js"></script>
+    <script src="mouse.js"></script>
+    <script>
+        var scene = document.getElementById("scene");
+        var hollow1 = document.getElementById("hollow1");
+        var score = document.getElementById("score");
+        var kuang = document.getElementById("kuang");
+
+     
+
+
+
+        // 一、随机产生老鼠，列数组
+      
+
+        // 二、多个老鼠随机单个出现设计
+  
+      
+        
+        // ！！！三和四、锤子点击效果通过锤子类实现，锤子移动效果通过scene绑定事件实现 
+        var newHammer = new Hammer();  // 通过类创建一个新的锤子对象
+        var newMouse = new Mouse();
+        scene.onmousemove = function (e) {   // 绑定一个匿名函数
+            var x = e.clientX;       // ！！！e代表当前事件。此处指的是onmousemove
+            var y = e.clientY;
+
+            // 设定当鼠标移动到"开始""结束“按钮的时候，变回手势。
+            var x1 = 610;
+            var x2 = 610 + 180;
+            var y1 = 40;
+            var y2 = 40 + 80;
+            if (x > x1 && x < x2 && y > y1 && y < y2) {
+                console.log("在开始结束的区域内");
+                // ！！通过新对象的名字进行对类下
+                newHammer.changeXY2(x,y);
+                // hammer.style.top = -1000 + "px";     // JS修改样式传入的是字符串。字符串+数字=字符串（强转）
+                // hammer.style.left = -1000 + "px";
+            } else {
+                newHammer.changeXY(x,y);
+                // hammer.style.top = y + "px";     // JS修改样式传入的是字符串。字符串+数字=字符串（强转）
+                // hammer.style.left = x + "px";
+            }
+        }
+   
+
+        // 五、老鼠冒出函数设计 (在多个老鼠随机出现设计中通过定时器的启动)
+  
+
+        // 六、锤子打击老鼠设计
+        scene.onclick = mouseclick;
+        function mouseclick(e) {
+            var x = e.clientX;       // ！！！e代表当前事件。此处指的是onmousemove
+            var y = e.clientY;
+
+            // 老鼠图片相对于(body)的x坐标值 = 老鼠图片相对于父框(hammer框)的左边距 + hammer框相对于父框(body)的左边距
+            var x1 = mouseAry[mouseID].offsetLeft + hollowAry[mouseID].offsetLeft;
+            var x2 = x1 + mouseAry[mouseID].offsetWidth;
+            var y1 = mouseAry[mouseID].offsetTop + hollowAry[mouseID].offsetTop;
+            var y2 = hollowAry[mouseID].offsetHeight + hollowAry[mouseID].offsetTop;
+
+            // offsetHeight/offsetHight:返回元素的高度/宽度 offserParent:返回元素的偏移容器
+            if (x > x1 && x < x2 && y > y1 && y < y2) {
+                console.log("打中了");
+                scorenum += 5;
+                score.innerHTML = scorenum;
+                mouseAry[mouseID].src = "打地鼠/mouse2.png";
+                scene.onclick = null;               // 在第一次打中后，去掉绑定的点击事件
+            }
+        }
+
+        // 七（拓展）、“开始”和“结束”按钮功能设计
+        var start = document.getElementById("start");
+        var end = document.getElementById("end");
+        start.onclick = function () {
+            if (moremouseLoop == null) {
+                moremouseLoop = setInterval(moremouseshow, 2000)// ！！！时间间隔要求 2000 >= 冒出花费时间(780毫秒) + 等待花费时间(此处为600毫秒) 
+            }
+        }
+        end.addEventListener('click', function newend() {  // ！！！通过addEventListener(可给同一个元素同时绑定多个事件)绑定结束事件
+            clearInterval(moremouseLoop);
+            scorenum = 0;
+            moremouseLoop = null;
+        }, false);
+        end.addEventListener('click', function displaykuang() {
+            kuang.innerHTML = "恭喜你！~ 你的最终得分为：" + score.innerHTML;
+            kuang.className = "display";
+            waitTime = 0;
+            waitTimeTop = 500;
+            wait = setInterval(function () {
+                if (waitTime < waitTimeTop) {    // waitTimeTop(500/50 * 300 = 3000 = 3秒，即得分框显示3秒钟消失
+                    waitTime += 50;
+                    console.log("及时");
+                }
+                if(waitTime >= waitTimeTop){
+                    console.log("关闭");
+                    kuang.className = "";
+                    kuang.innerHTML = "";
+                    score.innerHTML = 0;
+                    waitTime = 0;
+                    clearInterval(wait);
+                }
+            }, 300);
+        }, false);
+
+
+
+        // 八(拓展)、分数累加   
+            // 设计：增加div(score)，通过score.innerHTML和在锤子打老鼠中计scorenum来实现
+            //  bug:对冒出的同一个目标老鼠进行多次点击时，分数会累加。  解决方案：将锤子打老鼠的点击事件匿名函数改成有名，在第一次打中后，取消绑定的点击事件，再在多个老鼠随机单个出现设计函数中重新绑定
+        // 九(拓展)、点“结束”时，弹框显示分数 
+
+
+
+        // !!!!十(拓展)、增加倒计时，到时间时弹窗显示分数，并根据分数给予相应评价
+
+
+
+    </script>
+
+</body>
+
+</html>

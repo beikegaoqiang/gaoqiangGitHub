@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>快速搭建Bootstrap网页</title>
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- 组件：导航栏 -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand hidden-sm" href="#">Bootstrap中文网</a>
+                </div>
+            
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="hidden-md hidden-sm"><a href="#">Bootstrap2中文文档</a></li>
+                        <li><a href="#">Bootstrap3中文文档</a></li>
+                        <li><a href="#">Bootstrap4中文文档</a></li>
+                        <li><a href="#">Less教程</a></li>
+                        <li><a href="#">jQury API</a></li>
+                        <li><a href="#">网站实例</a></li>
+                        
+                    </ul>
+                    
+                    <!-- ！！！靠右的下拉菜单启动li(相当于响应式布局网站中的"="") -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="hidden-sm"><a href="#">关于</a></li>
+                
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </div>
+    </nav>
+    <!-- 组件：巨幕 -->
+    <div class="jumbotron masthead">  <!-- ！！！通过增加类名，进行基于组件上的样式修改 -->
+        <div class="container">
+            <h1>Bootstrap</h1>
+            <p>简洁、直观、强悍的前端开发框架，让web开发更迅速、简单。</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">Bootstrap3中文文档(v3.3.7)</a></p>
+            <!-- ！！！组件内没有，进行添加 -->
+            <ul>
+                <li>
+                    <a href="">Bootstrap2中文文档(v2.3.2)</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 组件：页头 -->
+    <div class="page-head">       
+        <ul>    
+            <li>
+                <a href="http://wenda.bootcss.com" target="_blank">Bootstrap问答社区</a>
+            </li>
+            <li>
+                <a href="">Bootstrap2中文文档(v2.3.2)</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="page-text">
+        <h1>Bootstrap相关优质项目推荐</h1>
+        <p>这些项目或者是对Bootstrap进行了有益的补充，或者是基于Bootstrap开发的</p>
+    </div>
+    
+    <!-- 组件：缩略图 -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="thumbnail">
+                    <img src="SL1.png" alt="...">
+                    <div class="caption">
+                        <h3><a href="http://www.youzhan.org/" title="Bootstrap 优站精选" target="_blank" >优站精选<br><small> Bootstrap 网站实例</small></a></h3>
+                        <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="thumbnail">
+                      <img src="SL2.png" alt="...">
+                    <div class="caption">
+                        <h3><a href="http://www.youzhan.org/" title="Bootstrap 优站精选" target="_blank" >Webpack<br><small> 是前端资源模块化管理和打包工具</small></a></h3>
+                        <p>Webpack 是当下最热门的前端资源模块化管理和打包工具。它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="thumbnail">
+                      <img src="SL3.png" alt="...">
+                      <div class="caption">
+                        <h3><a href="http://www.youzhan.org/" title="Bootstrap 优站精选" target="_blank" >优站精选<br><small> Bootstrap 网站实例</small></a></h3>
+                        <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="thumbnail">
+                      <img src="SL4.png" alt="...">
+                      <div class="caption">
+                        <h3><a href="http://www.youzhan.org/" title="Bootstrap 优站精选" target="_blank" >优站精选<br><small> Bootstrap 网站实例</small></a></h3>
+                        <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                    </div>
+                </div>
+            </div>
+        
+        
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="thumbnail">
+                    <img src="SL1.png" alt="...">
+                    <div class="caption">
+                        <h3><a href="http://www.youzhan.org/" title="Bootstrap 优站精选" target="_blank" >优站精选<br><small> Bootstrap 网站实例</small></a></h3>
+                        <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="thumbnail">
+                        <img src="SL2.png" alt="...">
+                        <div class="caption">
+                        <h3><a href="http://www.youzhan.org/" title="Bootstrap 优站精选" target="_blank" >Webpack<br><small> 是前端资源模块化管理和打包工具</small></a></h3>
+                        <p>Webpack 是当下最热门的前端资源模块化管理和打包工具。它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="thumbnail">
+                        <img src="SL3.png" alt="...">
+                        <div class="caption">
+                        <h3><a href="http://www.youzhan.org/" title="Bootstrap 优站精选" target="_blank" >优站精选<br><small> Bootstrap 网站实例</small></a></h3>
+                        <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="thumbnail">
+                        <img src="SL4.png" alt="...">
+                        <div class="caption">
+                        <h3><a href="http://www.youzhan.org/" title="Bootstrap 优站精选" target="_blank" >优站精选<br><small> Bootstrap 网站实例</small></a></h3>
+                        <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                    </div>
+                </div>
+            </div>
+        
+        
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="thumbnail">
+                    <img src="SL1.png" alt="...">
+                    <div class="caption">
+                        <h3><a href="http://www.youzhan.org/" title="Bootstrap 优站精选" target="_blank" >优站精选<br><small> Bootstrap 网站实例</small></a></h3>
+                        <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="thumbnail">
+                    <img src="SL2.png" alt="...">
+                    <div class="caption">
+                        <h3><a href="http://www.youzhan.org/" title="Bootstrap 优站精选" target="_blank" >Webpack<br><small> 是前端资源模块化管理和打包工具</small></a></h3>
+                        <p>Webpack 是当下最热门的前端资源模块化管理和打包工具。它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="thumbnail">
+                    <img src="SL3.png" alt="...">
+                    <div class="caption">
+                        <h3><a href="http://www.youzhan.org/" title="Bootstrap 优站精选" target="_blank" >优站精选<br><small> Bootstrap 网站实例</small></a></h3>
+                        <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="thumbnail">
+                    <img src="SL4.png" alt="...">
+                    <div class="caption">
+                        <h3><a href="http://www.youzhan.org/" title="Bootstrap 优站精选" target="_blank" >优站精选<br><small> Bootstrap 网站实例</small></a></h3>
+                        <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                    </div>
+                </div>
+            </div>
+       
+        
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="thumbnail">
+                    <img src="SL1.png" alt="...">
+                    <div class="caption">
+                        <h3><a href="http://www.youzhan.org/" title="Bootstrap 优站精选" target="_blank" >Webpack<br><small> 是前端资源模块化管理和打包工具</small></a></h3>
+                        <p>Webpack 是当下最热门的前端资源模块化管理和打包工具。它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="thumbnail">
+                    <img src="SL2.png" alt="...">
+                    <div class="caption">
+                        <h3><a href="http://www.youzhan.org/" title="Bootstrap 优站精选" target="_blank" >优站精选<br><small> Bootstrap 网站实例</small></a></h3>
+                        <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="thumbnail">
+                    <img src="SL3.png" alt="...">
+                    <div class="caption">
+                        <h3><a href="http://www.youzhan.org/" title="Bootstrap 优站精选" target="_blank" >优站精选<br><small> Bootstrap 网站实例</small></a></h3>
+                        <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="thumbnail">
+                    <img src="SL4.png" alt="...">
+                    <div class="caption">
+                        <h3><a href="http://www.youzhan.org/" title="Bootstrap 优站精选" target="_blank" >优站精选<br><small> Bootstrap 网站实例</small></a></h3>
+                        <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="foot">
+        <div class="container">
+            <div class="foot-left">
+                <img src="logo.png" alt="">
+                <p>我们一直致力于为广大开发者提供更多的优质技术文档和辅助开发工具！</p>
+            </div>
+            <div class="foot-right">    
+                <div class="col-xs-12 col-sm-6  col-md-3 col-lg-3">
+                    <ul>
+                        <li><a href="javascript:;">关于</a></li>
+                        <li><a href="">关于我们</a></li>
+                        <li><a href="">广告合作</a></li>
+                        <li><a href="">友情链接</a></li>
+                        <li><a href="">招聘</a></li>
+                        <li></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <ul>
+                        <li><a href="javascript:;">联系方式</a></li>
+                        <li><a href="">新浪微博</a></li>
+                        <li><a href="">电子邮件</a></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <ul>
+                        <li><a href="javascript:;">旗下网站</a></li>
+                        <li><a href="">Laravel中文网</a></li>
+                        <li><a href="">Ghost中国</a></li>
+                        <li><a href="">BootCDN</a></li>
+                        <li><a href="">Packagist中国镜像</a></li>
+                        <li><a href="">眼疼教育</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <ul>
+                        <li><a href="javascript:;">赞助商</a></li>
+                        <li><a href="">猫云</a></li>
+                        <li><a href="">京东云</a></li>
+                        <li><a href="">又拍云</a></li>
+                        <li><a href=""></a></li>
+                        <li><a href=""></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="foot-last">
+        <ul>
+            <li><a href="">京ICP备11008151号</a></li>
+            <span>|</span>
+            <li class="jing">京公网安备11010802014853</li>
+        </ul>
+    </div>
+
+    <script src="jquery-3.4.1.min.js"></script>
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+</body>
+</html>

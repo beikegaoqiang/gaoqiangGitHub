@@ -1,0 +1,557 @@
+body,ul,li{              /*取消默认样式*/
+    margin:0;
+    padding:0;
+}
+body{ 
+    height:2500px;         /*滚动条*/
+    font:14px/1.5 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+}
+ul{
+    list-style-type:none;  /*取消列表前的点*/
+}
+
+/*用矢量文字图标的定义*/
+@font-face {
+    font-family: 'iconfont';
+    src: url('iconfont.eot');
+    src: url('iconfont.eot?#iefix') format('embedded-opentype'),
+        url('iconfont.woff2') format('woff2'),
+        url('iconfont.woff') format('woff'),
+        url('iconfont.ttf') format('truetype'),
+        url('iconfont.svg#iconfont') format('svg');
+}
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+                       /* 一、顶部菜单栏 */
+.topbar{                         /* 控制顶部菜单栏的背景和高度设置*/
+    background-color: #333333;
+    height: 40px;
+}
+.container{  
+    margin: 0 auto;         /* 限制.container的上下边距（内边距）为0 左右居中 */
+    width: 1226px;    
+}
+/*   块浮动  */
+.topbar-info,.topbar-cart{    /*注意此处右侧浮动的模块排序，以H文档中书写顺序排列.与此处CSS浮动设置的书写先后顺序无关*/
+    float: right;              /*H文档中在最前面的标签浮动到最边界*/
+}
+/*    取消浮动   */
+ /* 处理**所有**需要去除浮动的元素，给整体模块的class都写成container,给需要去除的元素添加额外标签claearfix */
+.container::before,.container::after,
+.clearfix::before,.clearfix::after 
+{ 
+    content: "";                     /*！！！！加内容使margin不重叠*/
+    display: table;                  /*！！！！伪元素清理浮动 1 */
+}
+.container::after,.clearfix::after{
+    clear: both;                     /*！！！！伪元素清理浮动 2 */
+}
+
+/* 超链接初步设定 */
+a{
+    text-decoration: none;          /* 去掉超链接的下划线 */
+}
+.topbar a{                          /* 注意此处仅设置了超链接的文本格式（与span中的 | 区分开）*/
+    color: #b0b0b0;               /* 此处设置了顶部菜单栏下所有的文字颜色和大小 */
+    font-size: 12px;               
+}
+.topbar a:hover{                   /*设置鼠标触及时的超链接 */
+    color: rgb(240, 222, 223);
+}
+
+ /* （一）左侧topbar-nav(选项栏）模块设定 */
+.topbar-nav {  
+    float: left;
+          /* 模块内部文字（超链接文本）   *上下居中*   操作（以下两行） */
+    height: 40px;                   /* 块元素的高度 */           
+    line-height: 40px;              /* 设置字体所在行高度 */     
+    font-size: 0; /*！！！！在有连在一起，中间有空格文字时的常用操作：文本字体大小全设为0，目的是将html中文本编辑的空格去掉（注意：超链接文本已经初定义为12px）*/
+            /*！！！！！所需的超链接文本a和span再设置进行覆盖即可。*/
+} 
+.topbar-nav span{
+    font-size:12px;        /*！！！！！！！由于上行将文本设为0，此处进行重新恢复需要的span字体*/
+    color: #424242;
+    font-family: sans-serif;  /*字体类型*/
+    margin: 0.5em;        /* 为了使得竖线 "|" 与旁边元素有间隔，达到重合度*/
+}
+
+ /* （二）右侧topbar-cart（购物车）模块设定 */
+ /* 注意此处的模块不同于左边模块，超链接扩展到了一定的区域（不仅限于文本区域）*/
+ .topbar-cart a{
+    display :block;                 /*将超链接（行元素）变成块元素*/
+              /*！！！！将此句换成float:left时，效果不变。与下文.topbar-info a相呼应*/
+    width: 120px; 
+    height: 40px;
+    line-height: 40px;             /* 文本上下居中操作*/
+    font-size: 15px;      
+    background-color: #424242;
+    text-align: center;            /* 文本左右居中 */
+    transition: all .4s;            /*！！！！ 在小米闪购网站F12看源代码发现的 区域超链接延时效果*/
+}
+.topbar-cart  del{
+    text-decoration: none;
+    margin-left:-4px;       /*设置元素的左外边距，让（0）向左移动*/
+    font-size: 12px;
+    vertical-align: middle;
+}
+.topbar-cart a:hover{                
+    background-color: #fff;   /* 鼠标移动触发时的超链接块元素背景色*/
+    color: #ff6700;           /* 鼠标移动触发时的超链接文本颜色*/
+}
+
+ /* (三）右侧topbar-info（登录、注册、消息通知）模块设定 */
+.topbar-info{        /*前面已经设置右浮动*/
+    margin-right:15px;    /*设置元素的右外边距，从而使模块左移*/
+
+    height:40px;          /*超链接文字上下居中操作*/
+    line-height:40px;
+    font-size:0;          /*！！！！！！！文本字体大小全设为0，目的是将html中文本编辑的空格去掉（不会波及超链接文本），超链接文本已经初定义为12px*/
+} 
+.topbar-info a{
+    /* display:block;      加不加此句效果一样 */
+    float:left; 
+          /*！！！！注意此处的超链接是块区域，当没有此处的浮动操作时，超链接仅是文本区域*/
+    padding:0 5px;        /* 内边距：三个超链接之间的间距（距离左右的 | )，注意此处没有将a转化成块元素 */
+}
+.topbar-info span{
+    float:left;         /* 若此处不浮动，则会出现span内容都排在链接文本之后 */
+    font-size:12px;
+    color:#424242;
+    font-family: sans-serif;
+}
+.topbar-info .sep{        /*网站中“消息通知”的左右边距要比其他两个大一点，所以额外添加class进行设置*/
+     padding:0  10px 0 10px;
+}
+/*  ！！！！应注意到模块3中的左浮动是超链接在info模块内的，
+           模块1中的左浮动是模块在container内的，即浮动基准为上一级*/
+  
+
+
+                 /*  二、页头导航栏 */
+.header{
+        height:60px;
+        margin-top:20px;
+}
+
+ /* （一）左侧图片logo模块设定 */
+.header-logo{
+    float:left;
+    width:62px;
+   /* height:55px;   此处不需要书写高度，下面定义的a标签已充满 */
+   
+} 
+.header-logo img{
+    width:60px;
+    height:60px;
+}
+.header-logo a:hover{
+    color:#ff6700;             /*把默认不是块元素的a标签设置为块元素*/
+}
+.header-logo span{               /*把文本提升到图片上*/
+    display:block; 
+    width:55px;
+    height:55px;
+    margin-top: -55px;
+}
+
+ /*网络不好时，文字出来；网络好时。文字消失*/
+ /*使得当CSS链接表加载不出来时，可显示文字（直接在H文档中书写)，不至于用户无法点击（网速不好）*/
+ /*而且，使当加载顺利时，即此段css得以执行，不显示文字（和图片重叠太丑）*/  
+.header-logo .lr{               /* 也可直接写成 .header-logo .lr*/
+    text-align:left;            /*文字布局靠最左侧*/
+    text-indent:-9992px;        /*首行缩进,执行此句时，极大的缩进距离便可使原文字消失*/
+}
+
+
+ /* （二）中间模块设定 */
+.header-nav{     /* 先总体定义这部分模块的所占区域和浮动 */
+    float:left;  /*不代表内含的所有子元素也浮动 */
+    width:850px;
+    height:60px;
+    line-height:60px;       /*文字居中*/
+    font-size:16px;         /*字体大小，也可在.header-nav中设置*/  
+}
+.header-nav .nav-list .nav-category{   /*  “全部商品分类”  */
+    float:left;             /*浮动的基准是nav-list（ul）外框*/
+    height:60px;
+    width:150px;
+    padding:0 10px 0 10px;   
+}
+.header-nav .nav-list .nav-category a{   /*！！！！下下文已经统一设置了li a是浮动的块元素*/
+    color:rgb(44, 173, 72);     /*！！！注意上下文其他样式定义与此处的优先级比较*/
+    float:right;
+}
+.header-nav .nav-list li a{   /*  “各列表项”  */
+    float:left;              /* 当带上a时？？？？因为设置了超链接a的浮动，所以带动外壳li也浮动？？？（没对块元素Li进行浮动设置）*/
+    height: 60px;            /*！！！！！当去掉选择器中的a后，实现了文本超链接（非模块区域超链接）*/
+    margin: 0px 10px;        /*？？？？？内边距：各个a之间的间距,为何在网页F12上仅显示a，而不是li*/
+    color:#333;
+}
+.header-nav .nav-list li a:hover{
+    color:#ff6700;
+}
+
+
+ /* （三）右侧模块设定 */
+.header-search{             /*div外框*/
+    float:right;
+    width:296px;
+    height:50px;
+    margin-top:5px;
+    border:1px  solid black;
+}
+.header-search .search-form{
+    position: relative;    /*！！！将inform外框作为下文的text和btn定位作定位标定点*/
+    display:block;         /*！！！将表单元素模块化*/
+}
+.header-search .search-form .search-text{
+    position: absolute;    /*！！！进行绝对位置定位，标定点为上一个position（即为form表单）*/
+    top:0;                 /*可以写成margin*/
+    right:56px;
+
+    display:block;
+    width:240px;           /*搜索框text与提交框btn的宽度加起来要与外框契合*/
+    height:50px;
+    border:1px solid #e0e0e0;
+
+    line-height:50px;      /*！！！文字居中*/       
+    outline: 0;            /*！！！去掉列表框鼠标移动到时的蓝色框线*/
+}
+.header-search .search-form .search-btn{
+    position:absolute;
+    top:-0.5px;
+    right:-0.5px;
+
+    display:block;
+    width:57px;            /*搜索框text与提交框btn的宽度加起来要与外框契合*/
+    height:50.5px;         /*！！！此处宽度与搜索框text的加起来要比外框大1px，是为了不让分界线太粗*/
+    border:1px solid #e0e0e0;
+
+    font-size:24px;
+    line-height:50.5px;    /*文字居中*/
+    color: #616161;      /*字体颜色*/
+    background-color:#fff;
+    outline:0;   
+    transition: all .4s;   /*！！！！ 在小米闪购网站F12看源代码发现的 区域超链接延时效果*/               
+}
+.header-search .search-form .search-btn:hover{
+    background-color:#ff6700;
+    color:#fff;
+}
+
+
+
+           /* 三、闪购商品信息主体 seckill*/
+.seckill{                        /*！！！！控制背景和高度*/
+    background-color:#f5f5f5;  /*因为选项卡很多，不能确定有几行，所以高度自适应，此处不设*/
+}
+.seckill-head{                   /*头部图片设置*/
+    background:url(../小米商城素材/img/seckill-head.jpg)  no-repeat 0 0;   /*？？？？？*/
+    height:170px;
+    margin-top:35px;
+}
+
+   /*三、1   闪购时间表*/
+.seckill-nav {                   /*设置列表的高度和背景*/
+    margin:-68px  0px  22px;     /*上   左右   下*/
+    background: #414141;
+    width: 1226px;      
+    height: 68px;
+}
+
+.seckill-navfixed {              /*！！！！用于JS设置闪购时间表固定*/
+    position: fixed;             /*此定位的定位包含框就是body（外层无其他position）*/
+                                 /*仅有此fixed语句时，闪购时间表会固定在原设定位置*/
+    top: 60px;
+}
+
+.seckill-nav li{             
+    float: left;                 /*类同于页头导航栏 第73行选项的设置*/
+                                 /*！！！！！ ul和Li是块级元素*/
+    color: #fff;
+    width: 20%;                   /*！！！！一共有五个，一个占20%*/
+    line-height: 68px;         
+    text-align: center;           /*文字左右居中操作*/
+    cursor: pointer;              /*！！！！鼠标移上去时变成手势*/
+}
+.seckill-nav .active{             /*JS：设置此模块的单独红色*/
+    background-color:red;
+}
+.seckill-nav li:hover{ 
+    color:#d1881a;
+}
+
+             /*对同一行内元素em和span进行分别设置*/
+.seckill-nav  li em{             
+    display: inline-block;         /*行内块元素(元素前后不带换行符)设置，才可以进行margin操作*/
+    font-style: normal;            /*！！！！将em的默认格式取消，定义成普通字体模式*/
+    font-size: 18px;
+    vertical-align: middle;        /*！！！！设置元素的垂直对齐方式*/  
+                                   /*！！！！定义行内元素的基线相对于该元素所在行的基线的垂直对齐*/ 
+                                   /*！！！！middle表示把元素放置在父元素的中部(上文已经对li进行宽高设置)*/  
+}                                  
+                                
+.seckill-nav li span{
+    display: inline-block;
+    text-align: right;
+    font-size: 14px; 
+    vertical-align: middle; 
+    margin-left: 15px;             /*设置与左侧em文字模块的距离*/
+}
+.seckill-nav li  span em{    /*使用嵌套实现达到对“即将开始 距开始 00:55:04”的额外设置(将已有的属性进行覆盖，没有的属性进行添加)（巧)*/
+    text-align: left;   /* ！！！为了使“即将开始”在“即将开始+距开始”模块(已经右对齐)中实现左对齐*/
+    font-size: 14px;    /*！！！ 如果没有此句，则会继承li-em的 18px（涉及到选择器的优先级问题 此处em比sapn优先级高）*/ 
+    line-height: 20px;  /*！！！！行高与上述span不同，设置行高是为了让两行文字中间有点间隔*/ 
+    margin-left: 10px;  /*！！！！使此li的两个语句中间的间隔更大一些 15+10=25 是叠加，不是覆盖*/
+}
+
+
+     /* 三、2   闪购商品信息*/
+.seckill-goods .active{    /*！！！！！！  JS：设置此模块为显示的模块，将其他ul隐藏。.active优先级比ul的大*/
+    display:block;
+}
+.seckill-goods ul{
+    display: none;      /*将所有的ul进行隐藏*/
+                        /*注意此处的display不能对class为active的ul生效,！！！但除display: none;外其他语句有效*/
+                        /*因为是此处对ul进行操作，上一步是对active直接进行操作，class比标签名优先级更高*/
+                        /*这是此处用Ul而不用公用地址clearfix(class)的原因，若用了则达不到优先级的划分作用，所有ul都被隐藏*/
+                        /*既达到了存在共用class的情况下分别定义显示与不显示的class的目的，又节省了代码行*/
+                        /*此处还不能分开对active和clearfix进行分别定义，因为后者是公用地址*/
+
+    margin: 10px auto;   /*！！！！使Ul模块居中*/
+    width: 1226px;       /*！！！！高度不定义时，即根据内容充满的程度确定高度*/
+}
+
+.seckill-goods .gg{       /*基本商品图片模块设置*/
+    float: left;
+     /* margin-left:0 auto;   /*块元素居中操作对浮动模块无效*/
+                              /*解决方案：在外再包裹一层包含框，涉及外套流动显示，内套浮动显示*/
+    margin-left: 37px;
+    border: 1px solid black;
+}
+.seckill-goods .bg{       /*各行第一个商品图片模块设置*/
+    margin-left: 0px;
+}
+
+.seckill-goods .tg{       /*非第一行的商品图片模块设置*/
+    margin-top: 20px;
+}
+
+.seckill-goods img{    /*商品图片大小设置*/
+    float: left;
+    /* margin-left:0 auto;   /*块元素居中操作对浮动模块无效*/
+                             /*解决方案：在外再包裹一层包含框，涉及外套流动显示，内套浮动显示*/
+   width: 190px;
+   height: 190px;
+}
+
+.seckill-goods .info{          
+    float: left;
+    width: 175px;              /*！！！！注意info模块的形状大小是由width、height、padding、border、margin组成的*/
+    height: 170px;
+    border: 1px solid black;
+    padding-top: 20px;         /*所含内容间隙操作*/
+    padding-left: 15px;
+}
+.seckill-goods .info .name{
+    font-size: 16px;
+    color: #333;
+
+    display: block;  
+    height: 16px;
+    line-height: 16px;
+
+    white-space: nowrap;        /*！！！！不换行操作*/
+    overflow: hidden;           /*！！！！将超出部分隐藏，所以需要预先设置block*/
+    text-overflow: ellipsis;    /*！！！！超出部分的文本显示成点*/
+}
+.seckill-goods .info .tips{     /*p标签是块元素*/
+    font-size: 12px;        
+    line-height: 12px;
+    color: #999;
+    margin-top: 10px;            /*p是块元素，直接可进行margin操作*/
+    text-align:center;           /*文本居中操作*/
+}
+.seckill-goods .info .price{    
+    font-size: 16px;              /*！！！！字体三操作：大小，行高，颜色*/
+    line-height: 16px;
+    color: #f1396a;
+    /* margin: 16px 0;      ！！！！！ P元素自带上下margin-top和margin-bottom: font-size; */
+}                           
+.seckill-goods .info .price del{
+    font-size: 12px;      
+    line-height: 12px;
+    color: #5b22a5;
+    margin-left: 10px;
+}
+.seckill-goods .info .btn{ /*！！！！！此模块设置成block时，会出现margin边界重叠问题（通过直接把距离赋给其中一个模块即可）*/
+                           /*！！！！！值得注意的是，设置成line-block行内块元素时，不会出现边界重叠问题*/
+    display:block;        /*要将a标签设置成有大小的按钮，所以需要转变成块元素*/
+    margin-top: 25px;      
+    width: 118px;
+    height: 28px;
+    background-color: #f1393a;
+
+    font-size: 14px;           /*块元素内的文本操作*/
+    color: #fff;
+    line-height: 28px;
+    text-align:center;  
+    border:1px solid  #6860db;
+}
+.seckill-goods .info .btn:hover{
+    border: 2px solid #6860db;
+    background-color: #e0e0e0;
+    color: #ff6700;
+    transition: all .4s;            /*！！！！ 在小米闪购网站F12看源代码发现的 区域超链接延时效果*/
+}
+.seckill-goods .info .person{
+    font-size: 12px;      
+    line-height: 12px;  
+    color: #999;
+}
+
+/*   三、3 闪购主体底部文本信息*/
+.seckill-notice{           
+    font-size: 12px;
+    color: #999;
+    margin: 100px 0 0 145px;
+    padding-bottom: 35px;
+}
+.seckill-notice p{
+    margin-block-start: 0.1em;    /*！！！！ P标签自带上下1em的边距，需根据要求进行更改*/
+    margin-block-end: 0.1em;
+}
+
+
+                      /* 四、底部文本*/
+.bottom{
+    background-color: #fff;
+    height: 300px;    
+    width: 1226px; 
+    margin: 0 auto;
+}
+.bottom a{
+    font-size: 12px;
+    color:#757575;     
+}
+
+   /* 四.1 第一模块*/
+.bottom .bottom-1{
+    height: 75px;                   /* 块元素的高度 */           
+    line-height: 75px;              /* 居中操作 */    
+    font-size: 0px;
+    vertical-align: middle;
+    padding:0 50px;
+    border-bottom: 1px solid  #b0b0b0;
+}
+
+.bottom .bottom-1 a{
+    float: left;
+    font-size: 16px;
+    color: #616161;
+}
+.bottom .bottom-1 span{
+    float: left;
+    font-size: 16px;
+    color:#b0b0b0;
+    font-family: sans-serif;  /*字体类型*/
+    margin:0 60px;
+}
+.bottom .bottom-1 a:hover{
+    color: #ff6700;
+}
+
+   /* 四.2 第二模块*/
+.bottom .bottom-2{
+    float: left;
+    font-size: 16px;
+    padding-top: 40px;
+}
+
+.bottom .bottom-2 ul{
+    float: left;
+    width:160px;
+}
+.bottom .bottom-2 .bottmo-20 .normal a{
+    font-size: 12px;
+}
+.bottom .bottom-2 .bottmo-20 .top a{
+    display: block;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #424242;
+}
+.bottom .bottom-2 a:hover{
+    color: #ff6700;
+}
+.bottom .bottom-2 .bottmo-20 .top a:hover{
+    color: #ff6700;
+}
+
+   /* 四.3 第三模块*/
+.bottom .bottom-3{
+    float: right;
+    width: 261px;
+    font-size: 16px;
+    margin-top: 40px;
+    border-left: 1px solid #b0b0b0; 
+}
+.bottom .bottom-3 .bottom-30{
+    margin-top:0;
+    margin-bottom: 5px;
+    text-align:center;  
+    font-size: 22px;
+    line-height: 22px;
+    color: #ff6700;
+}
+.bottom .bottom-3 .bottom-31{
+    margin: 0 auto;
+    font-size: 12px;
+    text-align:center;
+}
+
+.bottom .bottom-3 .bottom-32{
+    margin-top: 0;
+    margin-bottom: 0px;
+    font-size: 12px;
+    text-align:center;
+}
+.bottom .bottom-3 .bottom-32 del{
+    text-decoration: none;
+    color: #bd1212;
+    font-size: 20px;
+    vertical-align: middle;
+    margin: 0 5px;
+}
+
+.bottom .bottom-3 a{
+    display: block;
+    height: 28px;
+    width: 118px;
+    background: #fff;
+    color: #ff6700;
+    border: 1px solid #ff6700; 
+    line-height: 28px;
+    font-size: 12px;
+    text-align:center;
+    margin-left: 70px;
+    transition: all .4s;   /*！！！！ 在小米闪购网站F12看源代码发现的 区域超链接延时效果*/
+}
+.bottom .bottom-3 a:hover{
+    color: #fff;
+    background: #ff6700;
+    border: 2px solid #333;
+}    
+
+
+
+
+            
