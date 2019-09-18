@@ -160,8 +160,7 @@ body{
     left: 50%;     
     /* 此处的百分之50是基于父级元素的*/
     /* ！！！此处不用再设置上下居中，上面的.tool>div中已经进行设置了 */
-    transform: translateX(-50%);   /* 水平居中在tool(已是定位包含框)中间 */
-    /* 此处的百分之50是基于自身元素的*/
+    transform: translateX(-50%);  
     width: 400px;
     height: 30px;
 }
@@ -174,7 +173,7 @@ body{
     text-align: center;  /* 水平居中：所包含的文字、行级块元素、行级元素*/
 }
 .current-time{
-    float: left;
+    float: left;       
 }
 .all-time{
     float: right;

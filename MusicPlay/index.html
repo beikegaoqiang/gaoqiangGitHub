@@ -1,7 +1,7 @@
 <!-- 功能最全播放器介绍：
 一、播放条拖动功能：可进行拖动条和当前播放博时间的显示。
         1.且在暂停的时候也可进行播放条拖动，松开时不进行播放，再次点击播放时，才从当前位置进行播放。
-        2.切歌后拖动功能正常。
+        2.切歌后拖动功能正常,从头进行移动。
 二、切歌功能： 
         1.切歌遵循当前的播放模式
         2.切歌后不影响其他功能
@@ -35,7 +35,7 @@
     <div class="wrapper">
         <!-- 图片播放区域 -->
         <main class="play">
-            <img id ="img" src="img/20.jpg" alt="">
+            <img id="img" src="img/20.jpg" alt="">
             <audio id="music" src=""></audio>
         </main>
         <!-- 播放列表区域 -->
@@ -72,11 +72,13 @@
                 <div class="current-time"></div>
                 <div class="line-box">
                     <div class="line-bg"></div>
+
                     <div class="line-active">
                         <div class="radio-box">
                             <span class="radio"></span>
                         </div>
                     </div>  
+                    
                 </div>
                 <div class="all-time"></div>
             </div>

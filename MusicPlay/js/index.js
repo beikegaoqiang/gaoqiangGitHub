@@ -34,7 +34,7 @@ var justifyActive = document.getElementsByClassName("justify-active")[0];
 var allWidth2 = 142;
 
 //  将10首(跟随机播放采用了Math.random有关)歌曲放入数组中  0-9
-var i = 0;
+var i = 0;    
 var musicList = ["比你更爱我的人.mp3","曾经的你.mp3","痴心绝对.mp3","等一分钟.mp3","都选C.mp3","飘向北方.mp3","拥抱的理由.mp3","勇气.mp3","最初的梦想.mp3","最天使.mp3"];
 mymusic.src = "./source/" + musicList[0];  // 歌曲初始化
 
@@ -107,7 +107,7 @@ function musicTime(){
     nowTime.innerHTML = conversion(mymusic.currentTime);  
     allTime.innerHTML = conversion(duration);
 }
-//  函数： 上一首播放 （封装上一首播放没有实际意义，与下一首播放对称）
+//  函数： 上一首播放 （封装上一首播放没有实际意义，为了与下一首播放对称）
 function previousmusic(){
 
     musicPause();  // ！！！在音乐正在播放，因为切歌要开始新的播放的时候，要先清除计时器
@@ -176,7 +176,7 @@ function nextmusic(){
         }
     } 
 }
-//  函数：图片旋转：1.音乐播放的时候旋转 2.音乐暂停的时候停止到当前位置  3.随着快进和慢放转速改变
+//  函数：图片旋转：1.音乐播放的时候旋转  2.音乐暂停的时候停止到当前位置  3.随着快进和慢放转速改变
 function rotateImg(){
     deg += 3;
     console.log(deg);
@@ -262,12 +262,11 @@ mymusic.onended = function (){
 radioBox.onmousedown = function(){
     // ！！首先要先清除计时器。不让进度条长度继续变长，不让已播放时长文本继续增加。
     // 注：此处并没有用暂停musicPause()，因为想让在拖动过程中音乐继续播放
-    clearInterval(timer);   // ！！！在音乐正在播放，因为拖拽又要重新开始新的位置播放的时候，要先清除计时器
+    clearInterval(timer);  
                  // 如果不关，则移动的时候onmousemove的时候显示当前拖动的nowTime和进度条，不移动的时候由于计时器没关，会显示当前播放的nowTime和进度条
                  // 此处不用musicPause()方法的原因是为了当在拖拽过程中也能进行音乐的播放( 无music.pause() )。
     clearInterval(rotate);
 
-    mymusic.oncanplay = null;   // ！！解决BUG 切歌后取消music.onplay事件，避免在拖拽进度条触发music.canplay事件，造成定时器重复开启
 
     // 给body绑定鼠标移动事件
     document.body.onmousemove = function(e){
@@ -290,7 +289,7 @@ radioBox.onmousedown = function(){
         // 事件取消 2 : 防止先后冒泡触发两个同名事件(！！如果在绑定了body.onmouseup后不取消绑定，则在触发myBtn.onmouseup时候，也会冒泡触发body.onmouseup) 
         document.body.onmouseup = null;
         // 使音频以新的currentTime开始播放
-        mymusic.currentTime = c; // ！！！！使得音乐播放跳转到拖拽条当前的位置，但应注意mymusic.currentTime一旦改变就会触发music.canplay事件
+        mymusic.currentTime = c; // ！！！！使得音乐播放跳转到拖拽条当前的位置，应注意mymusic.currentTime一旦改变就会触发music.canplay事件
         if(!mymusic.paused){     // ！！！！在音乐播放的时候拖拽进度条释放时才会触发定时器
             console.log("拖拽后播放：!music.paused musicPlay");
             timer = setInterval(movePro,200);    /* 以新的currentTime重新开启定时器，进度条和nowTime开始改变(movePro)*/ 
