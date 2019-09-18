@@ -35,7 +35,7 @@ var allWidth2 = 142;
 
 //  将10首(跟随机播放采用了Math.random有关)歌曲放入数组中  0-9
 var i = 0;    
-var musicList = ["比你更爱我的人.mp3","曾经的你.mp3","痴心绝对.mp3","等一分钟.mp3","都选C.mp3","飘向北方.mp3","拥抱的理由.mp3","勇气.mp3","最初的梦想.mp3","最天使.mp3"];
+var musicList = ["1.mp3","2.mp3","3.mp3","4.mp3","5.mp3","飘6.mp3","7.mp3","8.mp3","9.mp3","10.mp3"];
 mymusic.src = "./source/" + musicList[0];  // 歌曲初始化
 
 //  歌曲对应图片
