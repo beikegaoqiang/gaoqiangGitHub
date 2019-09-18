@@ -2,7 +2,7 @@ import axios from "axios"     // axios实现请求
 import Vue from "vue"         // 引入Vue构造函数，此时的Vue有notification属性(main.js是最先执行)
 
 const api = axios.create({    // 创建一个axios实例
-    baseURL: "http://sandbox_api.estudy.chanke.xyz"
+    baseURL: "http://sandbox-api.estudy.chanke.xyz"
 })
 
 // 全局axios配置
